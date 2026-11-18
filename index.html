@@ -1,0 +1,2312 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<title>Pediatric Nursing 👶 | The Coding Nurse (𝒜ℳℋ)🩺💉</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+:root[data-theme="light"] {
+  --primary: #0f4c81;
+  --secondary: #0ea5e9;
+  --success: #22c55e;
+  --danger: #dc2626;
+  --bg: #f1f5f9;
+  --card-bg: #ffffff;
+  --soft: #f8fafc;
+  --text: #0f172a;
+  --border: #e5e7eb;
+  --shadow: rgba(0,0,0,.06);
+}
+:root[data-theme="dark"] {
+  --primary: #38bdf8;
+  --secondary: #0ea5e9;
+  --success: #4ade80;
+  --danger: #f87171;
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --soft: #0f172a;
+  --text: #f8fafc;
+  --border: #334155;
+  --shadow: rgba(0,0,0,.3);
+}
+
+*{box-sizing:border-box; font-family:"Segoe UI", system-ui, sans-serif; transition: background 0.3s, color 0.3s;}
+body{margin:0; background:var(--bg); color:var(--text)}
+.container{max-width:1000px; margin:auto; padding:16px; position: relative;}
+
+.top-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin-top: -36px;
+  margin-bottom: 26px;
+  position: relative;
+  z-index: 10;
+  width: 100%;
+}
+
+.settings-bar {
+  display: flex;
+  gap: 6px;
+}
+
+.setting-btn, .theme-toggle {
+  background: var(--card-bg);
+  border: 2px solid var(--border);
+  padding: 8px 12px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: bold;
+  color: var(--text);
+  box-shadow: 0 4px 12px var(--shadow);
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.95); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+.shake-anim { animation: shake 0.3s ease-in-out; }
+
+.hero{
+  text-align:center;
+  padding:40px 20px 50px 20px;
+  border-radius:24px;
+  background: linear-gradient(135deg, #0f4c81, #0ea5e9);
+  color:#fff;
+  margin-bottom: 20px;
+  animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 10px 25px rgba(15, 76, 129, 0.2);
+}
+.hero h1{margin:0; font-size:34px; font-weight:800}
+.hero h2{ margin-top:6px; font-size:18px; letter-spacing:2px; text-transform:uppercase; color:#bbf7d0;}
+
+.mid-nav{ display:flex; gap:10px; margin:24px 0; padding:6px 4px; overflow-x:auto;}
+.q-btn{
+  min-width:44px; padding:10px 0; border-radius:12px; border:2px solid var(--border);
+  background:var(--card-bg); color: var(--text); font-weight:700; cursor:pointer; transition: all 0.2s ease;
+}
+.q-btn.active{background:#dbeafe; border-color:var(--secondary); color:#0f4c81; transform: scale(1.1); box-shadow: 0 4px 10px rgba(14, 165, 233, 0.2);}
+.q-btn.correct{background:#dcfce7 !important; border-color:var(--success) !important; color: #16a34a !important;}
+.q-btn.wrong{background:#fee2e2 !important; border-color:var(--danger) !important; color: #dc2626 !important;}
+.q-btn.flagged{border-color: #f59e0b !important; background: #fef3c7 !important; color: #b45309 !important;}
+.q-btn.answered-exam { background: #e2e8f0; border-color: #94a3b8; color: #475569; }
+
+.card{
+  background:var(--card-bg); border-radius:22px; padding:28px;
+  box-shadow:0 14px 35px var(--shadow); text-align: center;
+  animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: 1px solid var(--border);
+}
+
+.welcome-msg { 
+  font-size: 26px; 
+  color: #fff; 
+  font-weight: 800; 
+  margin-bottom: 25px; 
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  padding: 12px 24px;
+  border-radius: 50px;
+  display: inline-block;
+  box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+  letter-spacing: 0.5px;
+}
+
+.salawat-wrapper {
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: center;
+}
+.salawat-card-badge {
+  background: linear-gradient(135deg, rgba(15, 76, 129, 0.08), rgba(14, 165, 233, 0.08));
+  border: 2px dashed var(--primary);
+  color: var(--text);
+  padding: 12px 32px;
+  border-radius: 50px;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px var(--shadow);
+  animation: pulseGlow 2.5s infinite alternate;
+  direction: rtl;
+}
+@keyframes pulseGlow {
+  0% { transform: scale(1); box-shadow: 0 4px 15px var(--shadow); }
+  100% { transform: scale(1.03); box-shadow: 0 6px 22px rgba(14, 165, 233, 0.25); }
+}
+:root[data-theme="dark"] .salawat-card-badge {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.12), rgba(14, 165, 233, 0.12));
+}
+
+.main-mode-view {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  margin: 20px 0;
+}
+.main-choice-btn {
+  width: 100%;
+  max-width: 450px;
+  padding: 18px 24px;
+  font-size: 17px;
+  font-weight: 700;
+  border-radius: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  direction: rtl;
+  transition: all 0.25s ease;
+  box-shadow: 0 6px 16px var(--shadow);
+  border: 2px solid var(--border);
+  background: var(--card-bg);
+  color: var(--text);
+}
+.main-choice-btn:hover {
+  transform: translateY(-3px);
+}
+.main-choice-btn.lectures-trigger {
+  border-left: 6px solid var(--primary);
+}
+.main-choice-btn.lectures-trigger:hover {
+  border-color: var(--secondary);
+  box-shadow: 0 8px 24px rgba(14, 165, 233, 0.2);
+}
+.main-choice-btn.exam-trigger {
+  border-left: 6px solid #f59e0b;
+}
+.main-choice-btn.exam-trigger:hover {
+  border-color: #f59e0b;
+  box-shadow: 0 8px 24px rgba(245, 158, 11, 0.25);
+}
+
+.dataset-selector {
+ margin: 0 0 18px 0;
+ display: flex;
+ flex-direction: column;
+ gap: 10px;
+ align-items: center;
+}
+.dataset-title {
+ font-size: 15px;
+ font-weight: 800;
+ color: var(--primary);
+ direction: rtl;
+}
+
+.custom-select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 100%;
+  max-width: 450px;
+  padding: 16px 20px;
+  border-radius: 14px;
+  border: 2px solid var(--border);
+  font-size: 15px;
+  background: var(--soft) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%2364748b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>') no-repeat;
+  background-position: left 16px center;
+  color: var(--text);
+  font-weight: 700;
+  direction: rtl;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px var(--shadow);
+}
+.custom-select:focus {
+  outline: none;
+  border-color: var(--secondary);
+  box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.15);
+  background-color: var(--card-bg);
+}
+.custom-select option {
+  font-weight: bold;
+  background: var(--card-bg);
+  color: var(--text);
+}
+
+.custom-select option[value="all"] {
+  color: #16a34a;
+  font-weight: 900;
+}
+
+.mode-selector {
+ margin: 20px 0 25px 0;
+ display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+.mode-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--soft);
+  padding: 14px 20px;
+  border-radius: 14px;
+  border: 2px solid var(--border);
+  cursor: pointer;
+  width: 100%;
+  max-width: 450px;
+  text-align: right;
+  direction: rtl;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+.mode-option input { scale: 1.3; cursor: pointer; margin-left: 10px; }
+.mode-option:hover { border-color: var(--secondary); }
+.mode-option:has(input:checked) {
+  border-color: var(--secondary);
+  background: rgba(14, 165, 233, 0.08);
+}
+
+.start-btn {
+  padding: 16px 50px; font-size: 18px; font-weight: 700; color: #fff;
+  background: linear-gradient(135deg, var(--success), #16a34a); border: none; border-radius: 16px;
+  cursor: pointer; transition: all 0.2s ease; width: 100%; max-width: 450px;
+  display: block; margin: 10px auto;
+}
+.start-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(34, 197, 94, 0.35); }
+
+.back-btn {
+  padding: 12px 30px; font-size: 15px; font-weight: 700; color: var(--text);
+  background: var(--soft); border: 2px solid var(--border); border-radius: 14px;
+  cursor: pointer; transition: all 0.2s; width: 100%; max-width: 450px;
+  display: block; margin: 12px auto;
+}
+.back-btn:hover { background: var(--border); transform: translateY(-1px); }
+
+.resume-btn {
+  padding: 14px 30px; font-size: 16px; font-weight: 700; color: var(--primary);
+  background: transparent; border: 2px solid var(--primary); border-radius: 16px;
+  cursor: pointer; transition: all 0.2s ease; display: none; width: 100%; max-width: 450px;
+  display: block; margin: 12px auto;
+}
+.resume-btn:hover { background: var(--primary); color: #fff; }
+
+.timer-box {
+  display: none;
+  background: var(--card-bg);
+  border: 2px solid var(--border);
+  padding: 8px 20px;
+  border-radius: 50px;
+  font-weight: 800;
+  color: var(--danger);
+  box-shadow: 0 4px 12px var(--shadow);
+  text-align: center;
+  margin: 10px auto 20px auto;
+  width: fit-content;
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+
+.progress{ height:10px; background:var(--border); border-radius:999px; overflow:hidden; margin-bottom:18px;}
+.progress span{
+  display:block; height:100%; width:0%;
+  background:linear-gradient(90deg, var(--secondary), var(--success));
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.question-box{
+  background: var(--soft);
+  border-left:6px solid var(--secondary); border-radius:18px; padding:22px; text-align: left;
+}
+
+.q-tools-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed var(--border);
+}
+.q-badge {
+  background: var(--primary);
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: bold;
+}
+.q-actions {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.question { font-size:19px; font-weight:600; line-height: 1.5; width: 100%; display: block; word-wrap: break-word; }
+
+.kw-highlight {
+  background-color: #fef08a;
+  color: #854d0e;
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-weight: 900;
+  text-decoration: underline;
+  text-decoration-color: #ca8a04;
+  text-decoration-thickness: 3px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+:root[data-theme="dark"] .kw-highlight {
+  background-color: #713f12;
+  color: #fef08a;
+  text-decoration-color: #eab308;
+}
+
+#speakBtn, #stopSpeakBtn, #translateBtn { background: none; border: none; font-size: 20px; cursor: pointer; padding: 0; line-height: 1; transition: transform 0.2s; }
+#speakBtn:hover, #stopSpeakBtn:hover, #translateBtn:hover { transform: scale(1.2); }
+
+#flagBtn { background: none; border: none; font-size: 22px; cursor: pointer; padding: 0; line-height: 1; transition: transform 0.2s; filter: grayscale(1); }
+#flagBtn:hover { transform: scale(1.2); }
+#flagBtn.active { filter: grayscale(0) drop-shadow(0 0 4px #f59e0b) !important; transform: scale(1.1); }
+
+.translation-box {
+  display: none;
+  margin-top: 18px;
+  padding: 16px;
+  background: var(--card-bg);
+  border-right: 4px solid var(--secondary);
+  border-radius: 12px;
+  direction: rtl;
+  text-align: right;
+  box-shadow: inset 0 2px 6px var(--shadow), 0 2px 8px var(--shadow);
+  animation: popIn 0.3s ease;
+}
+.trans-title { font-weight: bold; color: var(--secondary); margin-bottom: 8px; font-size: 14px; }
+.trans-q { font-size: 16px; font-weight: 600; margin-bottom: 12px; line-height: 1.5; color: var(--text); }
+.trans-o-list { margin: 0; padding-right: 20px; font-size: 15px; color: #475569; line-height: 1.7; }
+
+.options button{
+  width:100%; padding:16px; margin-bottom:12px; border-radius:14px;
+  border:2px solid var(--border); background:var(--card-bg); color: var(--text);
+  font-size:16px; text-align: left; cursor:pointer; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.options button:not(:disabled):hover {
+  transform: translateY(-2px); border-color: var(--secondary);
+  box-shadow: 0 6px 16px rgba(14, 165, 233, 0.15);
+}
+.options button.correct{background:#ecfdf5 !important; border-color:var(--success) !important; color: #065f46 !important; font-weight: 700;}
+.options button.wrong{background:#fef2f2 !important; border-color:var(--danger) !important; color: #991b1b !important; font-weight: 700;}
+.options button.selected-exam { background: #e0f2fe !important; border-color: var(--secondary) !important; color: #0369a1 !important; font-weight: 700; }
+
+.nav{ display:flex; gap:12px; margin-top:26px;}
+.nav button{
+  flex:1; padding:14px; border-radius:14px; font-size:15px; font-weight:700; cursor:pointer; transition: all 0.2s;
+}
+.prev{background:var(--card-bg); border:2px solid var(--border); color: var(--text);}
+.prev:hover{background: var(--soft); transform: translateY(-1px);}
+.next{ border:none; color:#fff; background:linear-gradient(135deg,var(--primary),var(--secondary));}
+.next:hover{opacity: 0.95; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(15, 76, 129, 0.2);}
+
+.extra-nav { display: flex; gap: 12px; margin-top: 12px; }
+.extra-nav button { flex: 1; padding: 12px; border-radius: 14px; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+.home-btn { background: var(--card-bg); border: 2px solid var(--border); color: var(--text); }
+.home-btn:hover { background: var(--soft); transform: translateY(-1px); }
+.finish-btn { background: linear-gradient(135deg, var(--danger), #b91c1c); border: none; color: #fff; }
+.finish-btn:hover { opacity: 0.95; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(220, 38, 38, 0.2); }
+
+.result-msg { font-size: 18px; margin-bottom: 10px; line-height: 1.6; }
+.duck-msg { display: block; margin-top: 15px; font-weight: 800; color: var(--primary); font-size: 20px;}
+.stats-container {
+  display: flex; justify-content: space-around; background: var(--soft);
+  padding: 16px; border-radius: 16px; margin: 20px 0; border: 1px solid var(--border);
+}
+.stat-box { text-align: center; }
+.stat-val { font-size: 24px; font-weight: 800; }
+.stat-lbl { font-size: 13px; color: #64748b; margin-top: 4px; }
+.score{ font-size:48px; font-weight:900; color:var(--success); margin: 10px 0; text-shadow: 0 4px 12px rgba(34, 197, 94, 0.2);}
+.badge-title { font-size: 22px; font-weight: 800; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+.result-actions-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 400px;
+  margin: 20px auto 0 auto;
+}
+.restart{
+  padding:14px 28px; border:none; border-radius:16px; font-size:16px; font-weight:700;
+  cursor:pointer; color:#fff; background:linear-gradient(135deg,#0f4c81,#0ea5e9); transition: all 0.2s;
+  width: 100%;
+}
+.restart:hover{transform: translateY(-2px); box-shadow: 0 6px 18px rgba(15, 76, 129, 0.35);}
+
+.review-btn {
+  padding: 14px 28px; border: 2px solid var(--success); border-radius: 16px; font-size: 16px; font-weight: 700;
+  cursor: pointer; color: var(--success); background: transparent; transition: all 0.2s;
+  width: 100%; display: none;
+}
+.review-btn:hover { background: var(--success); color: #fff; transform: translateY(-2px); }
+
+.download-btn {
+  padding: 14px 28px; border: 2px solid var(--primary); border-radius: 16px; font-size: 16px; font-weight: 700;
+  cursor: pointer; color: var(--primary); background: transparent; transition: all 0.2s;
+  width: 100%;
+}
+.download-btn:hover { background: var(--primary); color: #fff; transform: translateY(-2px); }
+</style>
+</head>
+<body>
+
+<div class="container">
+    
+    <div class="hero">
+        <h1>Pediatric Nursing 👶</h1>
+        <h2>Question app</h2>
+        <p>Prepared by <strong>The Coding Nurse (𝒜ℳℋ)🩺💉</strong></p>
+    </div>
+
+    <div class="top-bar">
+        <div class="settings-bar">
+            <button class="setting-btn" id="soundToggle" onclick="toggleSound()"><span>🔊</span> Sound On</button>
+            <button class="setting-btn" id="vibeToggle" onclick="toggleVibration()"><span>📳</span> Vibe On</button>
+        </div>
+        <button class="theme-toggle" onclick="toggleTheme()"><span>🌓</span> Dark Mode</button>
+    </div>
+
+    <div class="card" id="startCard">
+        
+        <div class="salawat-wrapper">
+            <div class="salawat-card-badge">✨ صلي علي النبي 🤍🐣✨</div>
+        </div>
+        
+        <div id="mainModeMenu" class="main-mode-view">
+            <button class="main-choice-btn lectures-trigger" onclick="selectRootMode('lectures')">
+                <span>📌 📚 أسئله علي المحاضرات </span>
+                <span>⬅️</span>
+            </button>
+            <button class="main-choice-btn exam-trigger" onclick="selectRootMode('comprehensive_exam')">
+                <span>📌 🏆 وضع الامتحان الشامل </span>
+                <span>⭐</span>
+            </button>
+        </div>
+
+        <div id="lecturesSetupContainer" style="display: none;">
+            <div id="highScoreView" style="display:none; font-weight:bold; margin:0 auto 16px auto; color:var(--success); font-size:14px; background:rgba(34, 197, 94, 0.08); padding:8px 16px; border-radius:50px; border:1px dashed var(--success); width:fit-content; direction:rtl;">
+                🏆 أعلى سكور: <span id="highScoreVal">0%</span>
+            </div>
+
+            <div class="dataset-selector">
+                <div class="dataset-title">: Choose the lecture first</div>
+                <select id="datasetDrawer" class="custom-select" onchange="setDataset(this.value)">
+                    <option value="place1">1. Introduction of growth and development of children</option>
+                    <option value="place2">2. Toddler, preschool, school and adolescent age group</option>
+                    <option value="place3">3. Normal newborn</option>
+                    <option value="place4">4. High risk neonates</option>
+                    <option value="place5">5. Gastrointestinal disorders</option>
+                    <option value="place6">6. Respiratory system disorder</option>
+                    <option value="place7">7. Urinary system disorder</option>
+                    <option value="place8">8. Blood disorders</option>
+                    <option value="place9">9. Cardiovascular disorders</option>
+                    <option value="place10">10. Nervous system disorder</option>
+                    <option value="place11">11. Endocrine disorders</option>
+                    <option value="place12">12. Congenital anomalies of GIT</option>
+                </select>
+            </div>
+
+            <div class="mode-selector">
+                <label class="mode-option">
+                    <input type="radio" name="quizMode" value="sequential" onchange="setMode('sequential')">
+                    <span>🔢 وضع الترتيب (أسئلة واختيارات مرتبة بدون عشوائية)</span>
+                </label>
+                <label class="mode-option">
+                    <input type="radio" name="quizMode" value="study" onchange="setMode('study')">
+                    <span>📖 وضع المذاكرة (عشوائي + تصحيح فوري للمعلومات)</span>
+                </label>
+                <label class="mode-option">
+                    <input type="radio" name="quizMode" value="memorize" onchange="setMode('memorize')">
+                    <span>🧠 وضع البصمجة (كشف الإجابة الصحيحه للمراجعه)</span>
+                </label>
+                <label class="mode-option">
+                    <input type="radio" name="quizMode" value="exam" onchange="setMode('exam')">
+                    <span>⏳ وضع الامتحان (عشوائي + تايمر وبدون كشف الإجابات)</span>
+                </label>
+                <label class="mode-option">
+                    <input type="radio" name="quizMode" value="bookmark" onchange="setMode('bookmark')">
+                    <span>🔖 مراجعة الأسئلة المميزة فقط</span>
+                </label>
+            </div>
+
+            <button class="start-btn" onclick="startQuiz()">Start 🚀</button>
+            <button class="back-btn" onclick="selectRootMode('main')">⬅️ العودة للرئيسية</button>
+            <button class="resume-btn" id="resumeBtn" onclick="resumeQuiz()">استكمال محاولة الحل السابقة 🔄</button>
+        </div>
+    </div>
+
+    <div id="quizContainer" style="display:none">
+        <div class="timer-box" id="timerBox">⏳ المتبقي: <span id="timerDisplay">00:00</span></div>
+        <div class="mid-nav" id="midNav"></div>
+        <div class="card" id="quizCard">
+            <div class="progress"><span id="progressBar"></span></div>
+            <div class="question-box">
+                
+                <div class="q-tools-bar">
+                    <span class="q-badge" id="qIndexBadge">Question</span>
+                    <div class="q-actions">
+                        <button id="translateBtn" onclick="toggleTranslation()" title="ترجمة السؤال للعربية" style="display:none;">🌍</button>
+                        <button id="speakBtn" onclick="speakQuestion()" title="بدء النطق من أول وجديد">🔊</button>
+                        <button id="stopSpeakBtn" onclick="toggleSpeechPause()" title="إيقاف مؤقت" style="display:none;">⏸️</button>
+                        <button id="flagBtn" onclick="toggleFlag()" title="Bookmark Question">🔖</button>
+                    </div>
+                </div>
+
+                <div class="question" id="question"></div>
+                
+                <div class="translation-box" id="translationBox">
+                    <div class="trans-title">🎯 الترجمة العربية:</div>
+                    <div class="trans-q" id="transQText"></div>
+                    <ul class="trans-o-list" id="transOList"></ul>
+                </div>
+
+                <div class="options" id="options" style="margin-top: 20px;"></div>
+            </div>
+            
+            <div class="nav">
+                <button class="prev" onclick="prevQ()">⬅ Previous</button>
+                <button class="next" onclick="nextQ()">Next ➡</button>
+            </div>
+            
+            <div class="extra-nav">
+                <button class="home-btn" onclick="goToHome()">🏠 الرئيسية (حفظ)</button>
+                <button class="finish-btn" onclick="showResult()">📊 إنهاء وعرض النتيجة</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="card result" id="resultCard" style="display:none">
+        <div class="result-msg" style="color: var(--primary); font-weight: bold;">✨🤍 صلي علي النبي ✨ </div>
+        <div class="result-msg">
+            متزعلش لو نتيجة حلك مكنتش أحسن حاجه خليك ديما فاكر ان لسه فيه فرصه تحاول سمي الله وحاول تاني
+            <span class="duck-msg">( 🐥 أشطر كتكوت يخواشي )</span>
+        </div>
+        
+        <div class="stats-container">
+            <div class="stat-box">
+                <div class="stat-val" id="statCorrect" style="color: var(--success);">0</div>
+                <div class="stat-lbl">Correct ✅</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-val" id="statWrong" style="color: var(--danger);">0</div>
+                <div class="stat-lbl">Wrong ❌</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-val" id="statRatio" style="color: var(--secondary);">0%</div>
+                <div class="stat-lbl">Accuracy 🎯</div>
+            </div>
+        </div>
+
+        <h2>Final Result</h2>
+        <div class="score" id="scoreText"></div>
+        <div class="badge-title" id="badgeTitle"></div>
+        
+        <div class="result-actions-container">
+            <button class="review-btn" id="reviewBtn" onclick="startReview()">🔁 مراجعة الأخطاء فقط</button>
+            <button class="download-btn" id="downloadBtn" onclick="downloadResultCard()">📸 تحميل النتيجة كصورة</button>
+            <button class="restart" onclick="restartQuiz()">🔄 Restart Quiz</button>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<script>
+const datasets = {
+  "place1": [
+    {
+    q: "Growth refers to an increase in physical size of the whole body or any of its parts and results from:",
+    o: ["Cell division and synthesis of proteins", "Progressive increase in skill and capacity", "Qualitative change in functioning", "Observation and measurement"],
+    a: 0,
+    trQ: "يشير النمو إلى زيادة في الحجم المادي للجسم أو أي جزء منه وينتج عن:",
+    trO: ["انقسام الخلايا وتصنيع البروتينات", "زيادة تدريجية في المهارة وسعة الوظيفة", "تغير نوعي في الأداء", "الملاحظة والقياس"]
+  },
+  {
+    q: "Growth causes which type of change in the child's body?",
+    o: ["Qualitative change", "Quantitative change", "Behavioral change", "Functional change"],
+    a: 1,
+    trQ: "يسبب النمو أي نوع من التغييرات في جسم الطفل؟",
+    trO: ["تغير نوعي", "تغير كمي", "تغير سلوكي", "تغير وظيفي"]
+  },
+  {
+    q: "Development refers to:",
+    o: ["A progressive increase in skill and capacity of function", "An increase in physical size only", "Cell division and protein synthesis", "Quantitative changes in body size"],
+    a: 0,
+    trQ: "يشير التطور أو النماء إلى:",
+    trO: ["زيادة تدريجية في المهارة وسعة الوظيفة", "زيادة في الحجم المادي فقط", "انقسام الخلايا وتصنيع البروتينات", "التغيرات الكمية في حجم الجسم"]
+  },
+  {
+    q: "Development measurements are not as accurate as growth because it is measured through:",
+    o: ["Kilograms and meters", "Observation", "Pounds and inches", "Protein synthesis scale"],
+    a: 1,
+    trQ: "قياسات التطور ليست بنفس دقة النمو لأنه يتم قياسها من خلال:",
+    trO: ["الكيلوجرام والأمتار", "الملاحظة", "الرطل والبوصة", "مقياس تصنيع البروتينات"]
+  },
+  {
+    q: "Physical growth includes examples such as:",
+    o: ["Vital signs only", "Motor skills and reasoning", "Weight, height, head and chest circumferences", "Emotional stability"],
+    a: 2,
+    trQ: "يشمل النمو البدني أمثلة مثل:",
+    trO: ["العلامات الحيوية فقط", "المهارات الحركية والتفكير", "الوزن والطول ومحيط الرأس والصدر", "الاستقرار العاطفي"]
+  },
+  {
+    q: "Physiological growth includes examples such as:",
+    o: ["Vital signs", "Weight and height", "Head circumference", "Chest circumference"],
+    a: 0,
+    trQ: "يشمل النمو الفسيولوجي أمثلة مثل:",
+    trO: ["العلامات الحيوية", "الوزن والطول", "محيط الرأس", "محيط الصدر"]
+  },
+  {
+    q: "Motor development includes examples like:",
+    o: ["Reasoning and mental thinking", "Love and fear", "Self-concept and friendship", "Sitting, walking, etc."],
+    a: 3,
+    trQ: "يشمل التطور الحركي أمثلة مثل:",
+    trO: ["التفكير العقلي", "الحب والخوف", "مفهوم الذات والصداقة", "الجلوس والمشي وغيرها"]
+  },
+  {
+    q: "Cognitive (intellectual) development includes examples like:",
+    o: ["Reasoning, mental thinking, etc.", "Sitting and walking", "Love and fear", "Sense of trust"],
+    a: 0,
+    trQ: "يشمل التطور المعرفي أمثلة مثل:",
+    trO: ["التفكير والمنطق العقلي وغيرها", "الجلوس والمشي", "الحب والخوف", "الإحساس بالثقة"]
+  },
+  {
+    q: "The embryonic stage in the prenatal period lasts from conception to:",
+    o: ["4 weeks", "12 weeks", "8 weeks", "Birth"],
+    a: 2,
+    trQ: "تستمر المرحلة الجنينية المبكرة في فترة ما قبل الولادة من الحمل حتى:",
+    trO: ["4 أسابيع", "12 أسبوعاً", "8 أسابيع", "الولادة"]
+  },
+  {
+    q: "In early childhood, the toddler age group spans from:",
+    o: ["1 to 3 years of age", "3 to 6 years of age", "Birth to 1 year", "6 to 12 years of age"],
+    a: 0,
+    trQ: "في الطفولة المبكرة تمتد فئة عمر الطفل الدارج من:",
+    trO: ["من 1 إلى 3 سنوات من العمر", "من 3 إلى 6 سنوات من العمر", "من الولادة حتى سنة واحدة", "من 6 إلى 12 سنة من العمر"]
+  },
+  {
+    q: "Middle childhood (school age) spans from:",
+    o: ["6 to 12 years of age", "1 to 6 years of age", "10 to 18 years of age", "Birth to 12 months"],
+    a: 0,
+    trQ: "الطفولة المتوسطة سن المدرسة تمتد من:",
+    trO: ["من 6 إلى 12 سنة من العمر", "من 1 إلى 6 سنوات من العمر", "من 10 إلى 18 سنة من العمر", "من الولادة حتى 12 شهراً"]
+  },
+  {
+    q: "Growth proceeding from head to toes is known as:",
+    o: ["Proximodistal", "General to specific", "Cephalocaudal", "Continuous process"],
+    a: 2,
+    trQ: "النمو الذي يتجه من الرأس إلى القدمين يُعرف باسم:",
+    trO: ["من مركز الجسم للأطراف", "من العام إلى الخاص", "من الرأس إلى القدمين", "عملية مستمرة"]
+  },
+  {
+    q: "Growth proceeding from center of the body to the periphery is known as:",
+    o: ["Proximodistal", "Cephalocaudal", "General to specific", "Predictable sequence"],
+    a: 0,
+    trQ: "النمو الذي يتجه من مركز الجسم إلى الأطراف يُعرف باسم:",
+    trO: ["من مركز الجسم إلى الأطراف", "من الرأس إلى القدمين", "من العام إلى الخاص", "تسلسل متوقع"]
+  },
+  {
+    q: "Development proceeding from simple to complex function and activities is called:",
+    o: ["Cephalocaudal", "Proximodistal", "Continuous process", "General to specific"],
+    a: 3,
+    trQ: "التطور الذي ينتج من الوظائف والأنشطة البسيطة إلى المعقدة يُسمى:",
+    trO: ["من الرأس إلى القدمين", "من مركز الجسم للأطراف", "عملية مستمرة", "من العام إلى الخاص أو البسيط للمعقد"]
+  },
+  {
+    q: "Factors affecting growth and development include all of the following EXCEPT:",
+    o: ["Heredity", "Race, Nationality and sex", "Advanced computer skills", "Nutritional deficiencies"],
+    a: 2,
+    trQ: "العوامل المؤثرة على النمو والتطور تشمل كل ما يلي ما عدا:",
+    trO: ["الوراثة", "العرق والجنس والجنسية", "مهارات الكمبيوتر المتقدمة", "نقص التغذية"]
+  },
+  {
+    q: "Newborn stage is the first 4 weeks or first month of life, and it is a:",
+    o: ["Permanent unchanging phase", "Stationary period", "Transitional period from intrauterine life to extra uterine environment", "12-month period"],
+    a: 2,
+    trQ: "مرحلة حديثي الولادة هي أول 4 أسابيع أو شهر من الحياة وتعتبر:",
+    trO: ["مرحلة دائمية لا تتغير", "فترة ثبات", "فترة انتقالية من الحياة داخل الرحم إلى البيئة خارج الرحم", "فترة 12 شهراً"]
+  },
+  {
+    q: "Most newborn infants weight at birth ranges from:",
+    o: ["2.70 to 4 kg", "1.00 to 2.00 kg", "4.50 to 5.50 kg", "6.00 to 7.00 kg"],
+    a: 0,
+    trQ: "يتبدل وزن معظم الأطفال حديثي الولادة عند الولادة بين:",
+    trO: ["من 2.70 إلى 4 كجم", "من 1.00 إلى 2.00 كجم", "من 4.50 إلى 5.50 كجم", "من 6.00 إلى 7.00 كجم"]
+  },
+  {
+    q: "Newborn infants lose 5% to 10% of their birth weight by how many days after birth?",
+    o: ["1 to 2 days", "3 to 4 days", "7 to 10 days", "14 days"],
+    a: 1,
+    trQ: "يفقد الأطفال حديثي الولادة 5 إلى 10 بالمئة من وزنهم بعد كم يوم من الولادة؟",
+    trO: ["من 1 إلى 2 يوم", "من 3 إلى 4 أيام", "من 7 إلى 10 أيام", "14 يوماً"]
+  },
+  {
+    q: "Average boy's length at birth is:",
+    o: ["45 cm", "49 cm", "50 cm", "55 cm"],
+    a: 2,
+    trQ: "متوسط طول الولد عند الولادة هو:",
+    trO: ["45 سم", "49 سم", "50 سم", "55 سم"]
+  },
+  {
+    q: "Average girl's length at birth is:",
+    o: ["49 cm", "50 cm", "52 cm", "53 cm"],
+    a: 0,
+    trQ: "متوسط طول البنت عند الولادة هو:",
+    trO: ["49 سم", "50 سم", "52 سم", "53 سم"]
+  },
+  {
+    q: "Head circumference at birth is:",
+    o: ["30 to 32 cm", "33 to 35 cm", "36 to 38 cm", "40 to 42 cm"],
+    a: 1,
+    trQ: "محيط الرأس عند الولادة هو:",
+    trO: ["من 30 إلى 32 سم", "من 33 إلى 35 سم", "من 36 إلى 38 سم", "من 40 إلى 42 سم"]
+  },
+  {
+    q: "Chest circumference of a newborn infant is:",
+    o: ["Equal to head circumference", "30.5 to 33 cm", "35 to 38 cm", "40 cm"],
+    a: 1,
+    trQ: "محيط الصدر للطفل حديث الولادة هو:",
+    trO: ["يساوي محيط الرأس", "من 30.5 إلى 33 سم", "من 35 إلى 38 سم", "40 سم"]
+  },
+  {
+    q: "Temperature of a newborn infant is usually:",
+    o: ["34.0 to 35.0 C", "35.5 to 37.5 C", "38.0 to 39.0 C", "32.0 to 34.0 C"],
+    a: 1,
+    trQ: "درجة حرارة الطفل حديث الولادة تكون عادة:",
+    trO: ["من 34.0 إلى 35.0 مئوية", "من 35.5 إلى 37.5 مئوية", "من 38.0 إلى 39.0 مئوية", "من 32.0 إلى 34.0 مئوية"]
+  },
+  {
+    q: "Pulse rate of a newborn infant is usually:",
+    o: ["70 to 90 b/min", "90 to 110 b/min", "120 to 150 b/min", "160 to 190 b/min"],
+    a: 2,
+    trQ: "معدل نبض الطفل حديث الولادة يكون عادة:",
+    trO: ["من 70 إلى 90 نبضة بالدقيقة", "من 90 إلى 110 نبضة بالدقيقة", "من 120 إلى 150 نبضة بالدقيقة", "من 160 إلى 190 نبضة بالدقيقة"]
+  },
+  {
+    q: "Respiration rate of a newborn infant is usually:",
+    o: ["15 to 25 C/min", "25 to 34 C/min", "35 to 50 C/min", "55 to 70 C/min"],
+    a: 2,
+    trQ: "معدل التنفس للطفل حديث الولادة يكون عادة:",
+    trO: ["من 15 إلى 25 مرة بالدقيقة", "من 25 إلى 34 مرة بالدقيقة", "من 35 إلى 50 مرة بالدقيقة", "من 55 إلى 70 مرة بالدقيقة"]
+  },
+  {
+    q: "During the first 4 months, the infant gains how much weight per month?",
+    o: ["1/4 kg / month", "1/2 kg / month", "3/4 kg / month", "1 kg / month"],
+    a: 2,
+    trQ: "خلال الأشهر الأربعة الأولى يكتسب الرضيع كم من الوزن شهرياً؟",
+    trO: ["ربع كجم لكل شهر", "نصف كجم لكل شهر", "ثلاثة أرباع كجم لكل شهر", "واحد كجم لكل شهر"]
+  },
+  {
+    q: "The infant will double his birth weight by:",
+    o: ["2 to 3 months", "4 to 5 months", "6 to 8 months", "10 to 12 months"],
+    a: 1,
+    trQ: "يضاعف الرضيع وزن ولادته عند عمر:",
+    trO: ["من 2 إلى 3 أشهر", "من 4 إلى 5 أشهر", "من 6 إلى 8 أشهر", "من 10 إلى 12 شهراً"]
+  },
+  {
+    q: "The infant will triple his birth weight by:",
+    o: ["6 months", "8 months", "10 to 12 months", "18 months"],
+    a: 2,
+    trQ: "يضاعف الرضيع وزن ولادته ثلاث مرات عند عمر:",
+    trO: ["6 أشهر", "8 أشهر", "من 10 إلى 12 شهراً", "18 شهراً"]
+  },
+  {
+    q: "The anterior fontanel closes at:",
+    o: ["12 - 18 months of age", "1 to 2 months", "6 to 8 weeks", "End of first month"],
+    a: 0,
+    trQ: "اليافوخ الأمامي يغلق عند عمر:",
+    trO: ["من 12 إلى 18 شهراً من العمر", "من 1 إلى 2 شهر", "من 6 إلى 8 أسابيع", "نهاية الشهر الأول"]
+  },
+  {
+    q: "The posterior fontanel closes usually by the end of:",
+    o: ["12 to 18 months", "6 to 8 months", "The first year", "The first month of age"],
+    a: 3,
+    trQ: "اليافوخ الخلفي يغلق عادة بنهاية:",
+    trO: ["من 12 إلى 18 شهراً", "من 6 إلى 8 أشهر", "السنة الأولى", "الشهر الأول من العمر"]
+  },
+  {
+    q: "Eruption of teeth starts by 5 - 6 months of age and the total number of milky teeth is:",
+    o: ["10 teeth", "20 teeth", "32 teeth", "28 teeth"],
+    a: 1,
+    trQ: "يبدأ ظهور الأسنان عند عمر 5 إلى 6 أشهر والعدد الإجمالي للأسنان اللبنية هو:",
+    trO: ["10 أسنان", "20 سناً", "32 سناً", "28 سناً"]
+  },
+  {
+    q: "At 2 months of age, motor development milestones include:",
+    o: ["Sit alone briefly", "Crawl and walk", "Hold head erects in mid-position, Turn from side back", "Stand alone"],
+    a: 2,
+    trQ: "عند عمر شهرين تشمل علامات التطور الحركي:",
+    trO: ["الجلوس بمفرده لفترة قصيرة", "الحبو والمشي", "رفع الرأس بوضع متوسط والالتفاف من الجانب للظهر", "الوقوف بمفرده"]
+  },
+  {
+    q: "At 3 months of age, motor development milestones include:",
+    o: ["Hold head erect and steady", "Sit alone steadily", "Walk holding furniture", "Crawl well"],
+    a: 0,
+    trQ: "عند عمر 3 أشهر تشمل علامات التطور الحركي:",
+    trO: ["رفع الرأس بثبات واستقامة", "الجلوس بمفرده بثبات", "المشي بالتمسك بالأثاث", "الحبو الجيد"]
+  },
+  {
+    q: "At 4 months of age, motor development milestones include:",
+    o: ["Sit with adequate support, Roll over from front to back", "Hold cup and imitate acts", "Creep well and walk", "Walk holding furniture"],
+    a: 0,
+    trQ: "عند عمر 4 أشهر تشمل علامات التطور الحركي:",
+    trO: ["الجلوس بدعم مناسب والقلب من الأمام للخلف", "مسك الكوب تقليد الآخرين", "الحبو الجيد والمشي", "المشي مع الإمساك بالأثاث"]
+  },
+  {
+    q: "At 6 months of age, motor development milestones include:",
+    o: ["Hold head erect for the first time", "Stand erect with minimal support", "Walk in few steps", "Sit alone briefly, Hold own bottle"],
+    a: 3,
+    trQ: "عند عمر 6 أشهر تشمل علامات التطور الحركي:",
+    trO: ["رفع الرأس لأول مرة", "الوقوف باستقامة بأقل دعم", "المشي بضع خطوات", "الجلوس بمفرده لفترة قصيرة ومسك زجاجة الرضاعة الخاصة به"]
+  },
+  {
+    q: "At 7 months of age, the infant can:",
+    o: ["Sit alone", "Walk alone", "Run fast", "Jump"],
+    a: 0,
+    trQ: "عند عمر 7 أشهر يستطيع الرضيع:",
+    trO: ["الجلوس بمفرده", "المشي بمفرده", "الجري بسرعة", "القفز"]
+  },
+  {
+    q: "At 8 months of age, the infant can:",
+    o: ["Sit alone steadily, Drink from cup with assistance", "Rise to sitting position alone", "Walk holding on furniture", "Hold head erects in mid-position"],
+    a: 0,
+    trQ: "عند عمر 8 أشهر يستطيع الرضيع:",
+    trO: ["الجلوس بمفرده بثبات والشرب من الكوب بمساعدة", "الوصول لوضعية الجلوس بمفرده", "المشي بالتمسك بالأثاث", "رفع الرأس بوضع متوسط"]
+  },
+  {
+    q: "At 9 months of age, the infant can:",
+    o: ["Rise to sitting position alone, Crawl", "Walk alone", "Stand without any support", "Climb stairs"],
+    a: 0,
+    trQ: "عند عمر 9 أشهر يستطيع الرضيع:",
+    trO: ["الوصول لوضعية الجلوس بمفرده والحبو", "المشي بمفرده", "الوقوف بدون أي دعم", "صعود السلم"]
+  },
+  {
+    q: "At 10 months of age, the infant can:",
+    o: ["Sit alone briefly", "Creep well (use hands and legs), Walk but with help", "Hold own bottle", "Turn completely over"],
+    a: 1,
+    trQ: "عند عمر 10 أشهر يستطيع الرضيع:",
+    trO: ["الجلوس بمفرده لفترة قصيرة", "الحبو الجيد باستخدام اليدين والرجلين والمشي مع المساعدة", "مسك زجاجة الرضاعة الخاصة به", "الالتفاف كلياً"]
+  },
+  {
+    q: "At 12 months of age, the infant can:",
+    o: ["Stand - alone for variable length of time", "Only roll over from front to back", "Hold head erect for first time", "Crawl without using legs"],
+    a: 0,
+    trQ: "عند عمر 12 شهراً يستطيع الرضيع:",
+    trO: ["الوقوف بمفرده لفترة زمنية متغيرة", "الالتفاف من الأمام للخلف فقط", "رفع الرأس لأول مرة", "الحبو بدون استخدام الرجلين"]
+  },
+  {
+    q: "True or False: Growth causes a quantitative change in the child's body.",
+    o: ["True", "False"],
+    a: 0,
+    trQ: "صح أم خطأ: يسبب النمو تغييراً كمياً في جسم الطفل.",
+    trO: ["صح", "خطأ"]
+  },
+  {
+    q: "True or False: Development causes a quantitative change in the child's functioning.",
+    o: ["True", "False"],
+    a: 1,
+    trQ: "صح أم خطأ: يسبب التطور تغييراً كمياً في أداء وظائف الطفل.",
+    trO: ["صح", "خطأ"]
+  },
+  {
+    q: "True or False: All body parts grow at the same rate at the same time.",
+    o: ["True", "False"],
+    a: 1,
+    trQ: "صح أم خطأ: تنمو جميع أجزاء الجسم بنفس المعدل في نفس الوقت.",
+    trO: ["صح", "خطأ"]
+  },
+  {
+    q: "True or False: Head circumference is 33 to 35 cm at birth.",
+    o: ["True", "False"],
+    a: 0,
+    trQ: "صح أم خطأ: محيط الرأس يتراوح بين 33 إلى 35 سم عند الولادة.",
+    trO: ["صح", "خطأ"]
+  },
+  {
+    q: "True or False: The posterior fontanel closes at 12 to 18 months of age.",
+    o: ["True", "False"],
+    a: 1,
+    trQ: "صح أم خطأ: يغلق اليافوخ الخلفي عند عمر 12 إلى 18 شهراً.",
+    trO: ["صح", "خطأ"]
+  },
+  {
+    q: "True or False: The infant will double his birth weight by 4 to 5 months.",
+    o: ["True", "False"],
+    a: 0,
+    trQ: "صح أم خطأ: يضاعف الرضيع وزن ولادته عند عمر 4 إلى 5 أشهر.",
+    trO: ["صح", "خطأ"]
+  },
+  {
+    q: "True or False: By the end of the first year, chest circumference will be equal to head circumference.",
+    o: ["True", "False"],
+    a: 0,
+    trQ: "صح أم خطأ: بنهاية السنة الأولى يتساوى محيط الصدر مع محيط الرأس.",
+    trO: ["صح", "خطأ"]
+  },
+  {
+    q: "True or False: Posterior fontanel closes by 6 to 8 weeks of age.",
+    o: ["True", "False"],
+    a: 0,
+    trQ: "صح أم خطأ: يغلق اليافوخ الخلفي عند عمر 6 إلى 8 أسابيع.",
+    trO: ["صح", "خطأ"]
+  },
+  {
+    q: "True or False: Emotional development shows infant's emotions rapidly changing from crying to laughter.",
+    o: ["True", "False"],
+    a: 0,
+    trQ: "صح أم خطأ: يظهر التطور العاطفي تغير مشاعر الرضيع بسرعة من البكاء إلى الضحك.",
+    trO: ["صح", "خطأ"]
+  },
+  {
+    q: "True or False: In social development, the infant shows fear of stranger (stranger anxiety).",
+    o: ["True", "False"],
+    a: 0,
+    trQ: "صح أم خطأ: في التطور الاجتماعي يظهر الرضيع خوفاً من الغرباء.",
+    trO: ["صح", "خطأ"]
+  }
+  ],
+  "place2": [],
+  "place3": [
+    {
+    q: "Definition of neonatal period is a period from birth to:",
+    o: ["4 weeks postnatal", "2 weeks postnatal", "6 weeks postnatal", "8 weeks postnatal"],
+    a: 0,
+    trQ: "تعريف فترة حديثي الولادة هي الفترة من الولادة حتى:",
+    trO: ["4 أسابيع بعد الولادة", "أسبوعين بعد الولادة", "6 أسابيع بعد الولادة", "8 أسابيع بعد الولادة"]
+  },
+  {
+    q: "The purpose of APGAR scoring is to assess:",
+    o: ["The child's intelligence", "The newborn's immediate adjustment to extra-uterine life", "The mother's postpartum recovery", "The infant's long-term growth"],
+    a: 1,
+    trQ: "الغرض من مقياس أبجار هو تقييم:",
+    trO: ["ذكاء الطفل", "التكيف الفوري للطفل حديث الولادة مع الحياة خارج الرحم", "تعافي الأم بعد الولادة", "النمو طويل المدى للرضيع"]
+  },
+  {
+    q: "In APGAR scoring, a heart rate greater than 100 b/min and strong receives a score of:",
+    o: ["0", "1", "2", "3"],
+    a: 2,
+    trQ: "في مقياس أبجار، معدل ضربات القلب الأكبر من 100 نبضة في الدقيقة والقوي يحصل على درجة:",
+    trO: ["صفر", "واحد", "اثنان", "ثلاثة"]
+  },
+  {
+    q: "In APGAR scoring, a pink body with blue extremities receives a color score of:",
+    o: ["0", "1", "2", "3"],
+    a: 1,
+    trQ: "في مقياس أبجار، الجسم الوردي مع أطراف زرقاء يحصل على درجة لون:",
+    trO: ["صفر", "واحد", "اثنان", "ثلاثة"]
+  },
+  {
+    q: "In APGAR scoring, if the newborn is flaccid with no movement, the muscle tone score is:",
+    o: ["Zero", "1", "2", "3"],
+    a: 0,
+    trQ: "في مقياس أبجار، إذا كان حديث الولادة مرتخياً بدون حركة، فإن درجة توتر العضلات تكون:",
+    trO: ["صفر", "واحد", "اثنان", "ثلاثة"]
+  },
+  {
+    q: "In APGAR scoring, weak crying or irregular breathing receives a score of:",
+    o: ["Zero", "2", "1", "3"],
+    a: 2,
+    trQ: "في مقياس أبجار، البكاء الضعيف أو التنفس غير المنتظم يحصل على درجة:",
+    trO: ["صفر", "اثنان", "واحد", "ثلاثة"]
+  },
+  {
+    q: "The normal posture of a newborn is:",
+    o: ["Extension of head and extremities", "Flexion of head and extremities, taking them toward chest and abdomen", "Flat and rigid posture", "Asymmetrical extension"],
+    a: 1,
+    trQ: "الوضعية الطبيعية للطفل حديث الولادة هي:",
+    trO: ["بسط الرأس والأطراف", "انثناء الرأس والأطراف وتقريبها نحو الصدر والبطن", "وضعية مسطحة ومتصلبة", "بسط غير متماثل"]
+  },
+  {
+    q: "Vernix caseosa is a soft yellowish cream layer that covers the skin of the newborn or is found in:",
+    o: ["The scalp only", "The body creases and between the labia", "The palms and soles", "The eyes and mouth"],
+    a: 1,
+    trQ: "الطلاء الدهني هو طبقة كريمية صفراء ناعمة تغطي جلد حديث الولادة أو توجد في:",
+    trO: ["فروة الرأس فقط", "ثنيات الجسم وبين الشفرين", "راحتي اليدين وأخمص القدمين", "العينين والفم"]
+  },
+  {
+    q: "Lanugo hair is a slight downy distribution of fine hair over the body that disappears during:",
+    o: ["The first weeks of infant's life", "The preschool years", "Adolescence", "The first year of life"],
+    a: 0,
+    trQ: "شعر الزغب هو توزيع خفيف من الشعر الناعم على الجسم ويختفي خلال:",
+    trO: ["الأسابيع الأولى من حياة الرضيع", "سنوات ما قبل المدرسة", "فترة المراهقة", "السنة الأولى من الحياة"]
+  },
+  {
+    q: "Mongolian spots are bluish coloration on the lower back and buttocks that usually disappear during:",
+    o: ["The first week", "Preschool years without any treatment", "The first month", "24 hours after birth"],
+    a: 1,
+    trQ: "البقع المنغولية هي تلون مزرق في أسفل الظهر والأرداف وتختفي عادة خلال:",
+    trO: ["الأسبوع الأول", "سنوات ما قبل المدرسة دون أي علاج", "الشهر الأول", "24 ساعة بعد الولادة"]
+  },
+  {
+    q: "Desquamation is peeling of the skin over areas of bony prominence that occurs within:",
+    o: ["24 hours of birth", "2 to 4 weeks of life", "6 months of life", "1 year of life"],
+    a: 1,
+    trQ: "تقشر الجلد فوق مناطق البروز العظمي يحدث خلال:",
+    trO: ["24 ساعة من الولادة", "من أسبوعين إلى 4 أسابيع من الحياة", "6 أشهر من الحياة", "سنة واحدة من الحياة"]
+  },
+  {
+    q: "Physiological jaundice appears on skin and sclera of eyes at the third day of life and disappears between:",
+    o: ["2nd to 4th day of life", "7th to 10th day of life", "14th to 21st day of life", "1st to 2nd month of life"],
+    a: 1,
+    trQ: "اليرقان الفسيولوجي يظهر على الجلد وبياض العين في اليوم الثالث من الحياة ويختفي بين:",
+    trO: ["اليوم الثاني إلى الرابع من الحياة", "اليوم السابع إلى العاشر من الحياة", "اليوم الرابع عشر إلى الحادي والعشرين", "الشهر الأول إلى الثاني من الحياة"]
+  },
+  {
+    q: "Milia are small white or yellow pinpoint spots that disappear within:",
+    o: ["1 to 2 weeks", "1 to 2 months", "6 months", "1 year"],
+    a: 0,
+    trQ: "الدخينات هي بقع صغيرة بيضاء أو صفراء بحجم رأس الدبوس وتختفي خلال:",
+    trO: ["من أسبوع إلى أسبوعين", "من شهر إلى شهرين", "6 أشهر", "سنة واحدة"]
+  },
+  {
+    q: "In a newborn, the anterior fontanel closes between:",
+    o: ["2 to 3 months after birth", "1 to 3 years of age", "1 to 2 weeks of age", "4 to 6 weeks of age"],
+    a: 1,
+    trQ: "في الطفل حديث الولادة، يغلق اليافوخ الأمامي ما بين:",
+    trO: ["من شهرين إلى 3 أشهر بعد الولادة", "من سنة إلى 3 سنوات من العمر", "من أسبوع إلى أسبوعين من العمر", "من 4 إلى 6 أسابيع من العمر"]
+  },
+  {
+    q: "The posterior fontanel is triangular in shape and closes at:",
+    o: ["2 to 3 months after birth", "1 to 3 years of age", "6 to 8 months", "At birth"],
+    a: 0,
+    trQ: "اليافوخ الخلفي مثلث الشكل ويغلق عند:",
+    trO: ["من شهرين إلى 3 أشهر بعد الولادة", "من سنة إلى 3 سنوات من العمر", "من 6 إلى 8 أشهر", "عند الولادة"]
+  },
+  {
+    q: "Caput succedaneum has poorly defined margins because:",
+    o: ["It is limited by suture lines", "It crosses the suture lines", "It occurs after 3 days", "It contains only blood"],
+    a: 1,
+    trQ: "الحدبة المصلية الدموية لها حواف غير محددة بوضوح لأنها:",
+    trO: ["محدودة بخطوط الدرز", "تعبر خطوط الدرز", "تحدث بعد 3 أيام", "تحتوي على دم فقط"]
+  },
+  {
+    q: "Caput succedaneum usually resolves without specific treatment within:",
+    o: ["The first few days", "2 to 3 months", "6 months", "1 year"],
+    a: 0,
+    trQ: "الحدبة المصلية الدموية تزول عادة دون علاج محدد خلال:",
+    trO: ["الأيام القليلة الأولى", "من شهرين إلى 3 أشهر", "6 أشهر", "سنة واحدة"]
+  },
+  {
+    q: "In cephalhematoma, bleeding is limited by suture lines and never crosses them, so it is:",
+    o: ["Poorly defined", "Sharply demarcated", "Absent after 2 days", "Present only on the face"],
+    a: 1,
+    trQ: "في الورم الدموي الرأسي، النزيف محدود بخطوط الدرز ولا يعبرها أبداً، لذا فهو:",
+    trO: ["غير محدد بوضوح", "محدد الحواف بوضوح", "يختفي بعد يومين", "يوجد على الوجه فقط"]
+  },
+  {
+    q: "Most lesions of uncomplicated cephalhematoma are absorbed within:",
+    o: ["The first few days", "2 weeks to 3 months", "6 to 12 months", "24 hours"],
+    a: 1,
+    trQ: "معظم حالات الورم الدموي الرأسي غير المصحوب بمضاعفات يتم امتصاصها خلال:",
+    trO: ["الأيام القليلة الأولى", "من أسبوعين إلى 3 أشهر", "من 6 إلى 12 شهراً", "24 ساعة"]
+  },
+  {
+    q: "The true color of a newborn's eyes is not determined until the age of:",
+    o: ["1 month", "3 to 6 months", "1 year", "2 weeks"],
+    a: 1,
+    trQ: "اللون الحقيقي لعيني الطفل حديث الولادة لا يتحدد حتى عمر:",
+    trO: ["شهر واحد", "من 3 إلى 6 أشهر", "سنة واحدة", "أسبوعين"]
+  },
+  {
+    q: "Blinking of a newborn's eyes has which type of function?",
+    o: ["Digestive function", "Protective function", "Auditory function", "Circulatory function"],
+    a: 1,
+    trQ: "رمش عيني حديث الولادة له أي نوع من الوظائف؟",
+    trO: ["وظيفة هضمية", "وظيفة وقائية", "وظيفة سمعية", "وظيفة دورية"]
+  },
+  {
+    q: "The startle reflex occurs in response to:",
+    o: ["Touch on the cheek", "Any sudden loud noise", "Bright light", "Cold temperature"],
+    a: 1,
+    trQ: "منعكس الفزع يحدث استجابة لـ:",
+    trO: ["لمس الخد", "أي ضوضاء عالية مفاجئة", "الضوء الساطع", "درجة الحرارة الباردة"]
+  },
+  {
+    q: "Nasal patency in a newborn is ensured through observation of:",
+    o: ["Skin color", "Water condensation on the metal surface of stethoscope", "Cry intensity", "Heart rate"],
+    a: 1,
+    trQ: "يتم التأكد من سالكية الأنف لدى حديث الولادة من خلال ملاحظة:",
+    trO: ["لون الجلد", "تكثف الماء على السطح المعدني للسماعة الطبية", "شدة البكاء", "معدل ضربات القلب"]
+  },
+  {
+    q: "The newborn's cheeks have a chubby appearance due to development of fatty sucking pads which:",
+    o: ["Prevent crying", "Help create negative pressure inside the mouth to facilitate sucking", "Produce excess saliva", "Protect the gums"],
+    a: 1,
+    trQ: "خدود حديث الولادة لها مظهر ممتلئ بسبب تطور وسادات المص الدهنية التي:",
+    trO: ["تمنع البكاء", "تساعد في خلق ضغط سلبي داخل الفم لتسهيل المص", "تنتج لعاباً زائداً", "تحمي اللثة"]
+  },
+  {
+    q: "The newborn's abdomen is cylindrical in shape and contains the umbilical cord which has:",
+    o: ["One artery and two veins", "Two arteries and one vein", "Two arteries and two veins", "One artery and one vein"],
+    a: 1,
+    trQ: "بطن حديث الولادة أسطواني الشكل ويحتوي على الحبل السري الذي به:",
+    trO: ["شريان واحد ووريدان", "شريانان ووريد واحد", "شريانان ووريدان", "شريان واحد ووريد واحد"]
+  },
+  {
+    q: "The capacity of the infant's stomach at birth is about:",
+    o: ["10 to 20 ml", "30 to 60 ml", "100 to 150 ml", "200 to 250 ml"],
+    a: 1,
+    trQ: "سعة معدة الرضيع عند الولادة تبلغ حوالي:",
+    trO: ["من 10 إلى 20 مل", "من 30 إلى 60 مل", "من 100 إلى 150 مل", "من 200 إلى 250 مل"]
+  },
+  {
+    q: "The newborn's neck is described as:",
+    o: ["Long and thin", "Short, thick, and usually surrounded by skin folds", "Rigid and extended", "Flat without folds"],
+    a: 1,
+    trQ: "توصف رقبة حديث الولادة بأنها:",
+    trO: ["طويلة ونحيفة", "قصيرة وسميكة وعادة محاطة بثنيات جلدية", "متصلبة وممدودة", "مسطحة بدون ثنيات"]
+  },
+  {
+    q: "The first stools after birth and for three to four days afterwards are called:",
+    o: ["Vernix", "Meconium", "Milia", "Lanugo"],
+    a: 1,
+    trQ: "البراز الأول بعد الولادة ولمدة ثلاثة إلى أربعة أيام بعدها يسمى:",
+    trO: ["الطلاء الدهني", "العقي", "الدخينات", "الزغب"]
+  },
+  {
+    q: "The apical pulse in an infant is considered the most accurate and is located at:",
+    o: ["2nd and 3rd intercostal space", "4th and 5th intercostal space, lateral to left sternal border", "6th intercostal space, right side", "1st intercostal space"],
+    a: 1,
+    trQ: "يعتبر النبض القمي لدى الرضيع هو الأكثر دقة ويقع عند:",
+    trO: ["الورب الثاني والثالث", "الورب الرابع والخامس، وحشي الحافة اليسرى لعظم القص", "الورب السادس في الجانب الأيمن", "الورب الأول"]
+  },
+  {
+    q: "The average blood pressure of an infant at birth is:",
+    o: ["120/80 mm Hg", "72/42 mm Hg", "90/60 mm Hg", "100/70 mm Hg"],
+    a: 1,
+    trQ: "متوسط ضغط الدم للرضيع عند الولادة هو:",
+    trO: ["120 على 80 ملم زئبق", "72 على 42 ملم زئبق", "90 على 60 ملم زئبق", "100 على 70 ملم زئبق"]
+  },
+  {
+    q: "Respirations of a newborn infant vary from:",
+    o: ["12 to 20 breaths per minute", "30 to 60 breaths per minute", "70 to 90 breaths per minute", "15 to 25 breaths per minute"],
+    a: 1,
+    trQ: "تتراوح معدلات التنفس لدى الطفل حديث الولادة من:",
+    trO: ["12 إلى 20 نفساً في الدقيقة", "30 إلى 60 نفساً في الدقيقة", "70 إلى 90 نفساً في الدقيقة", "15 إلى 25 نفساً في الدقيقة"]
+  },
+  {
+    q: "Cough reflex in a newborn is absent at birth and becomes present by:",
+    o: ["1 to 2 days postnatal", "1 to 2 weeks postnatal", "1 month postnatal", "6 months postnatal"],
+    a: 0,
+    trQ: "منعكس السعال لدى حديث الولادة يكون غائباً عند الولادة ويصبح موجوداً بحلول:",
+    trO: ["يوم إلى يومين بعد الولادة", "أسبوع إلى أسبوعين بعد الولادة", "شهر بعد الولادة", "6 أشهر بعد الولادة"]
+  },
+  {
+    q: "In normal female genitalia, the urethral meatus is located:",
+    o: ["Above the clitoris", "Behind the clitoris", "At the tip of labia", "Inside the vagina"],
+    a: 1,
+    trQ: "في الأعضاء التناسلية الأنثوية الطبيعية، تقع فتحة مجرى البول:",
+    trO: ["فوق البظر", "خلف البظر", "عند طرف الشفرين", "داخل المهبل"]
+  },
+  {
+    q: "Pseudomenstruation (pink or blood-tinged vaginal discharge) should not last more than:",
+    o: ["2 to 3 days", "2 to 3 weeks", "1 month", "10 days"],
+    a: 0,
+    trQ: "الطمث الكاذب أو الإفرازات المهبلية المدممة يجب ألا تستمر أكثر من:",
+    trO: ["يومين إلى 3 أيام", "أسبوعين إلى 3 أسابيع", "شهر واحد", "10 أيام"]
+  },
+  {
+    q: "Swollen breasts appear on the 3rd day of life in both genders and last for:",
+    o: ["2 to 3 days", "2 to 3 weeks", "2 to 3 months", "6 months"],
+    a: 1,
+    trQ: "تورم الثديين يظهر في اليوم الثالث من الحياة في كلا الجنسين ويستمر لمدة:",
+    trO: ["يومين إلى 3 أيام", "أسبوعين إلى 3 أسابيع", "شهرين إلى 3 أشهر", "6 أشهر"]
+  },
+  {
+    q: "Moro reflex occurs in response to any sudden movement or loss of support and usually disappears by:",
+    o: ["2 to 3 weeks old", "8 to 10 weeks old", "6 to 8 months old", "1 year old"],
+    a: 1,
+    trQ: "يحدث منعكس مورو استجابة لأي حركة مفاجئة أو فقدان للدعم ويختفي عادة بحلول:",
+    trO: ["عمر أسبوعين إلى 3 أسابيع", "عمر 8 إلى 10 أسابيع", "عمر 6 إلى 8 أشهر", "عمر سنة واحدة"]
+  },
+  {
+    q: "In a normal newborn's extremities, creases are present on:",
+    o: ["The entire palms only", "Anterior two thirds or entire of soles", "Posterior third of soles only", "The dorsal surface of feet"],
+    a: 1,
+    trQ: "في أطراف الطفل حديث الولادة الطبيعي، توجد تجاعيد الجلد على:",
+    trO: ["راحتي اليدين بالكامل فقط", "الثلثين الأماميين أو كامل أخمص القدمين", "الثلث الخلفي من أخمص القدمين فقط", "السطح العلوي للقدمين"]
+  },
+  {
+    q: "Protection from hemorrhage in immediate care of the newborn is achieved by:",
+    o: ["Vitamin C administration", "Vitamin K administration", "Vitamin D administration", "Iron administration"],
+    a: 1,
+    trQ: "يتم تحقيق الحماية من النزيف في الرعاية الفورية لحديثي الولادة عن طريق:",
+    trO: ["إعطاء فيتامين سي", "إعطاء فيتامين ك", "إعطاء فيتامين د", "إعطاء الحديد"]
+  },
+  {
+    q: "What is the first step in immediate care of the newborn?",
+    o: ["Identification", "Maintenance of body temperature", "Clear airway", "Vitamin K administration"],
+    a: 2,
+    trQ: "ما هي الخطوة الأولى في الرعاية الفورية للطفل حديث الولادة؟",
+    trO: ["تحديد الهوية", "الحفاظ على درجة حرارة الجسم", "تنظيف مجرى الهواء", "إعطاء فيتامين ك"]
+  },
+  {
+    q: "Successful use of reflex mechanism in a newborn is strong evidence of:",
+    o: ["Normal functioning central nervous system", "Respiratory distress", "Cardiovascular abnormality", "Nutritional deficiency"],
+    a: 0,
+    trQ: "الاستخدام الناجح لآلية المنعكسات لدى حديث الولادة هو دليل قوي على:",
+    trO: ["عمل الجهاز العصبي المركزي بشكل طبيعي", "ضائقة تنفسية", "خلل في القلب والأوعية الدموية", "نقص التغذية"]
+  },
+  {
+    q: "True or False: Neonatal period is defined as the period from birth to 4 weeks postnatal.",
+    o: ["True", "False"],
+    a: 0,
+    trQ: "صح أم خطأ: تُعرف فترة حديثي الولادة بأنها الفترة من الولادة حتى 4 أسابيع بعد الولادة.",
+    trO: ["صح", "خطأ"]
+  },
+  {
+    q: "True or False: In APGAR scoring, a pale or blue body receives a score of 2.",
+    o: ["True", "False"],
+    a: 1,
+    trQ: "صح أم خطأ: في مقياس أبجار، يحصل الجسم الشاحب أو الأزرق على درجة 2.",
+    trO: ["صح", "خطأ"]
+  },
+  {
+    q: "True or False: Milia should be expressed (squeezed) to make them disappear faster.",
+    o: ["True", "False"],
+    a: 1,
+    trQ: "صح أم خطأ: يجب عصر الدخينات لجعلها تختفي بشكل أسرع.",
+    trO: ["صح", "خطأ"]
+  },
+  {
+    q: "True or False: Fontanels bulge when the baby cries or if there is increased Intracranial Pressure (ICP).",
+    o: ["True", "False"],
+    a: 0,
+    trQ: "صح أم خطأ: ينتفخ اليافوخ عندما يبكي الطفل أو إذا كان هناك زيادة في الضغط داخل الجمجمة.",
+    trO: ["صح", "خطأ"]
+  },
+  {
+    q: "True or False: Cephalhematoma crosses the suture lines.",
+    o: ["True", "False"],
+    a: 1,
+    trQ: "صح أم خطأ: يعبر الورم الدموي الرأسي خطوط الدرز.",
+    trO: ["صح", "خطأ"]
+  },
+  {
+    q: "True or False: Newborn babies are born with the ability to blink their eyes, and this reflex has a protective function.",
+    o: ["True", "False"],
+    a: 0,
+    trQ: "صح أم خطأ: يولد الأطفال حديثو الولادة ولديهم القدرة على رمش أعينهم، وهذا المنعكس له وظيفة وقائية.",
+    trO: ["صح", "خطأ"]
+  },
+  {
+    q: "True or False: The newborn's tongue is long and protruded.",
+    o: ["True", "False"],
+    a: 1,
+    trQ: "صح أم خطأ: لسان حديث الولادة طويل وبارز للخارج.",
+    trO: ["صح", "خطأ"]
+  },
+  {
+    q: "True or False: Normally, the newborn has urine in the bladder and voids at birth or some hours later.",
+    o: ["True", "False"],
+    a: 0,
+    trQ: "صح أم خطأ: بشكل طبيعي، يكون لدى حديث الولادة بول في المثانة ويتبول عند الولادة أو بعد ذلك بساعات.",
+    trO: ["صح", "خطأ"]
+  },
+  {
+    q: "True or False: Swollen breasts in a newborn should be expressed to prevent infection.",
+    o: ["True", "False"],
+    a: 1,
+    trQ: "صح أم خطأ: يجب عصر الثديين المتورمين لدى حديث الولادة لمنع العدوى.",
+    trO: ["صح", "خطأ"]
+  },
+  {
+    q: "True or False: In normal male genitalia, testes are palpable in each scrotum.",
+    o: ["True", "False"],
+    a: 0,
+    trQ: "صح أم خطأ: في الأعضاء التناسلية الذكرية الطبيعية، تكون الخصيتان محسوستين في كل كيس صفن.",
+    trO: ["صح", "خطأ"]
+  }
+  ],
+  "place4": [
+    {
+    q: "Definition of high-risk neonate is any baby exposed to any condition that makes the survival rate of the neonate at:",
+    o: ["High safety", "Danger", "Normal growth", "Rapid improvement"],
+    a: 1,
+    trQ: "تعريف المولود عالي الخطورة هو أي طفل يتعرض لأي حالة تجعل معدل بقائه على قسط الحياة في:",
+    trO: ["أمان تام", "خطر", "نمو طبيعي", "تحسن سريع"]
+  },
+  {
+    q: "Medical illness of the mother that contributes to a high-risk neonate includes:",
+    o: ["Diabetes Mellitus, Heart or Kidney diseases", "Fractures", "Common cold only", "Appendicitis"],
+    a: 0,
+    trQ: "المرض الطبي للأم الذي يساهم في تكوين مولود عالي الخطورة يشمل:",
+    trO: ["مرض السكري، أمراض القلب أو الكلى", "الكسور", "البرد العادي فقط", "التهاب الزائدة الدودية"]
+  },
+  {
+    q: "Complications of labor that contribute to a high-risk neonate include all of the following EXCEPT:",
+    o: ["Premature Rupture of Membrane (PROM)", "Obstructed labor", "Caesarean Section (CS)", "Normal spontaneous vaginal delivery without complications"],
+    a: 3,
+    trQ: "مضاعفات المخاض التي تساهم في تكوين مولود عالي الخطورة تشمل كل ما يلي ما عدا:",
+    trO: ["التمزق المبكر للأغشية", "تعسر الولادة", "العمليات القيصرية", "الولادة الطبيعية التلقائية بدون مضاعفات"]
+  },
+  {
+    q: "Neonatal factors that contribute to a high-risk neonate include:",
+    o: ["Neonatal asphyxia, infection, congenital anomalies, pre or post maturity", "Normal active crying only", "Standard birth weight", "Normal body temperature"],
+    a: 0,
+    trQ: "عوامل حديثي الولادة التي تساهم في مولود عالي الخطورة تشمل:",
+    trO: ["الاختناق الولادي، العدوى، التشوهات الخلقية، الولادة المبكرة أو المتأخرة", "البكاء النشط الطبيعي فقط", "وزن الولادة القياسي", "درجة حرارة الجسم الطبيعية"]
+  },
+  {
+    q: "Low Birth Weight (LBW) infant is an infant whose birth weight is less than:",
+    o: ["1000 gram", "1500 gram", "2500 gram", "4000 gram"],
+    a: 2,
+    trQ: "الطفل ذو الوزن المنخفض عند الولادة هو طفل يقل وزن ولادته عن:",
+    trO: ["1000 جرام", "1500 جرام", "2500 جرام", "4000 جرام"]
+  },
+  {
+    q: "Very low birth weight (VLBW) infant is an infant whose birth weight is less than:",
+    o: ["1000 gram", "1500 gram", "2500 gram", "3000 gram"],
+    a: 1,
+    trQ: "الطفل ذو الوزن المنخفض جداً عند الولادة هو طفل يقل وزن ولادته عن:",
+    trO: ["1000 جرام", "1500 جرام", "2500 جرام", "3000 جرام"]
+  },
+  {
+    q: "Extremely low birth weight (ELBW) infant is an infant whose birth weight is less than:",
+    o: ["1000 gram", "1500 gram", "2000 gram", "2500 gram"],
+    a: 0,
+    trQ: "الطفل ذو الوزن المنخفض للغاية عند الولادة هو طفل يقل وزن ولادته عن:",
+    trO: ["1000 جرام", "1500 جرام", "2000 جرام", "2500 جرام"]
+  },
+  {
+    q: "A premature (preterm) infant is an infant born before completion of how many weeks of gestation?",
+    o: ["32 weeks", "37 weeks", "40 weeks", "42 weeks"],
+    a: 1,
+    trQ: "الطفل المبتسر (قبل الأوان) هو طفل ولِد قبل اكتمال كم أسبوع من الحمل؟",
+    trO: ["32 أسبوعاً", "37 أسبوعاً", "40 أسبوعاً", "42 أسبوعاً"]
+  },
+  {
+    q: "A post term (post mature) infant is an infant born after how many weeks of gestation?",
+    o: ["37 weeks", "40 weeks", "42 weeks", "44 weeks"],
+    a: 2,
+    trQ: "الطفل متأخر الولادة (ما بعد الناضج) هو طفل ولِد بعد كم أسبوع من الحمل؟",
+    trO: ["37 أسبوعاً", "40 أسبوعاً", "42 أسبوعاً", "44 أسبوعاً"]
+  },
+  {
+    q: "Common neonatal respiratory disorders include all of the following EXCEPT:",
+    o: ["Respiratory distress syndrome (RDS)", "Transient tachypnea of the newborn (TTN)", "Meconium aspiration syndrome (MAS)", "Normal spontaneous breathing without surfactant"],
+    a: 3,
+    trQ: "اضطرابات الجهاز التنفسي الشائعة لحديثي الولادة تشمل كل ما يلي ما عدا:",
+    trO: ["متلازمة الضائقة التنفسية", "التسرع التنفسي العابر لحديثي الولادة", "متلازمة استنشاق العقي", "التنفس التلقائي الطبيعي بدون عامل خافض للتوتر السطحي"]
+  },
+  {
+    q: "Respiratory distress syndrome (RDS) is caused by a low level or absence of:",
+    o: ["Surfactant", "Vitamin K", "Glucose", "Bilirubin"],
+    a: 0,
+    trQ: "متلازمة الضائقة التنفسية تنتج بسبب انخفاض مستوى أو غياب:",
+    trO: ["المادة خافضة التوتر السطحي", "فيتامين ك", "الجلوكوز", "البيليروبين"]
+  },
+  {
+    q: "Surfactant is a phospho-lipid substance secreted by alveolar epithelium which reduces:",
+    o: ["Blood pressure", "The surface tension of fluids that line the alveoli", "Heart rate", "Body temperature"],
+    a: 1,
+    trQ: "المادة خافضة التوتر السطحي هي مادة دهنية فوسفاتية تفرزها خلايا الحويصلات الهوائية والتي تقلل:",
+    trO: ["ضغط الدم", "التوتر السطحي للسوائل التي تبطن الحويصلات الهوائية", "معدل ضربات القلب", "درجة حرارة الجسم"]
+  },
+  {
+    q: "In Grade I of RDS (Mild distress), the clinical presentation includes rapid respiratory rate (tachypnea) greater than:",
+    o: ["30 breaths per minute", "40 breaths per minute", "60 breaths per minute", "80 breaths per minute"],
+    a: 2,
+    trQ: "في الدرجة الأولى من متلازمة الضائقة التنفسية، يتضمن العرض السريري معدل تنفس سريع أكبر من:",
+    trO: ["30 نفساً في الدقيقة", "40 نفساً في الدقيقة", "60 نفساً في الدقيقة", "80 نفساً في الدقيقة"]
+  },
+  {
+    q: "Grade II of Respiratory Distress Syndrome (Moderate distress) is characterized by:",
+    o: ["GI + intercostals and substernal retractions", "GI + GII + expiratory grunting", "GI + GII + GIII + central cyanosis", "Rapid respiratory rate only"],
+    a: 0,
+    trQ: "تتميز الدرجة الثانية من متلازمة الضائقة التنفسية (ضائقة متوسطة) بـ:",
+    trO: ["الدرجة الأولى + انكماشان بين الضلوع وتحت عظم القص", "الدرجة الأولى والثانية + أنين الزفير", "الدرجة الأولى والثانية والثالثة + زرقان مركزي", "معدل تنفس سريع فقط"]
+  },
+  {
+    q: "In the general management of RDS, oxygen administration via head box should provide:",
+    o: ["10-20% O2", "30-40% O2", "60-70% O2", "90-100% O2"],
+    a: 1,
+    trQ: "في الإدارة العامة لمتلازمة الضائقة التنفسية، يجب أن توفر إدارة الأكسجين عبر صندوق الرأس:",
+    trO: ["من 10 إلى 20 بالمئة أكسجين", "من 30 إلى 40 بالمئة أكسجين", "من 60 إلى 70 بالمئة أكسجين", "من 90 إلى 100 بالمئة أكسجين"]
+  },
+  {
+    q: "Specific management of RDS involves surfactant replacement therapy through:",
+    o: ["Intramuscular injection", "ET tube", "Oral feeding", "Intravenous line"],
+    a: 1,
+    trQ: "العلاج المحدد لمتلازمة الضائقة التنفسية يتضمن العلاج البديل للمادة الفعالة من خلال:",
+    trO: ["حقن بالعضل", "أنبوب رغامي", "التغذية عن طريق الفم", "وريد"]
+  },
+  {
+    q: "Hyperbilirubinemia is defined in a full-term infant as serum bilirubin equal to or greater than:",
+    o: ["5 mg/dl", "10 mg/dl", "12.9 mg/dl", "20 mg/dl"],
+    a: 2,
+    trQ: "يُعرّف فرط بيليروبين الدم في الطفل مكتمل النمو بأنه بيليروبين المصل يساوي أو يبلغ:",
+    trO: ["5 ملغ/ديسيلتر", "10 ملغ/ديسيلتر", "12.9 ملغ/ديسيلتر", "20 ملغ/ديسيلتر"]
+  },
+  {
+    q: "Physiological jaundice appears in almost every newborn infant during:",
+    o: ["The first week of life", "The second month", "The sixth month", "The first year"],
+    a: 0,
+    trQ: "يظهر اليرقان الفسيولوجي فيเกือบ كل طفل حديث الولادة خلال:",
+    trO: ["الأسبوع الأول من الحياة", "الشهر الثاني", "الشهر السادس", "السنة الأولى"]
+  },
+  {
+    q: "In a full term healthy infant, physiological jaundice appears at day:",
+    o: ["1st day", "2-3 days", "7th day", "14th day"],
+    a: 1,
+    trQ: "في الطفل الصحيح مكتمل النمو، يظهر اليرقان الفسيولوجي في اليوم:",
+    trO: ["الأول", "الثاني إلى الثالث", "السابع", "الرابع عشر"]
+  },
+  {
+    q: "Management of unconjugated hyperbilirubinemia commonly involves:",
+    o: ["Phototherapy", "Antibiotics", "Surgical removal", "Blood restriction"],
+    a: 0,
+    trQ: "علاج فرط بيليروبين الدم غير المقترن يتضمن بشكل شائع:",
+    trO: ["العلاج الضوئي", "المضادات الحيوية", "الإزالة الجراحية", "تقييد الدم"]
+  },
+  {
+    q: "Phototherapy alters the structure of bilirubin to a water soluble form for easier:",
+    o: ["Absorption", "Excretion", "Storage", "Circulation"],
+    a: 1,
+    trQ: "العلاج الضوئي يغير بنية البيليروبين إلى شكل قابل للذوبان في الماء لتسهيل:",
+    trO: ["الامتصاص", "الإخراج", "التخزين", "الدوران"]
+  },
+  {
+    q: "During phototherapy, the infant's eyes and which other organs must be covered?",
+    o: ["Hands and feet", "Genital organs", "Chest and abdomen", "Ears"],
+    a: 1,
+    trQ: "أثناء العلاج الضوئي، يجب تغطية عيني الرضيع وأي أعضاء أخرى؟",
+    trO: ["اليدين والقدمين", "الأعضاء التناسلية", "الصدر والبطن", "الأذنين"]
+  },
+  {
+    q: "To prevent skin barrier to light during phototherapy, avoid using:",
+    o: ["Water", "Oily lubricants or lotion on the infant's exposed skin", "Saline drops", "Clean linen"],
+    a: 1,
+    trQ: "لمنع تشكل حاجز للضوء أثناء العلاج الضوئي، يجب تجنب استخدام:",
+    trO: ["الماء", "المزلقات الزيتية أو المستحضرات على جلد الرضيع المكشوف", "قطرات محلول ملحي", "الملاءات النظيفة"]
+  },
+  {
+    q: "Infants receiving phototherapy require an increase in fluid volume and calories by adding:",
+    o: ["10% additional fluid", "20% additional fluid", "50% additional fluid", "No extra fluid"],
+    a: 1,
+    trQ: "الرضع الذين يتلقون العلاج الضوئي يتطلبون زيادة في حجم السوائل والسعرات الحرارية بإضافة:",
+    trO: ["10 بالمئة سوائل إضافية", "20 بالمئة سوائل إضافية", "50 بالمئة سوائل إضافية", "بدون سوائل إضافية"]
+  },
+  {
+    q: "Phototherapy side effects include all of the following EXCEPT:",
+    o: ["Hyperthermia", "Dehydration due to increased insensible water loss", "Watery diarrhea", "Permanent blindness"],
+    a: 3,
+    trQ: "آثار العلاج الضوئي الجانبية تشمل كل ما يلي ما عدا:",
+    trO: ["فرط الحرارة", "الجفاف بسبب زيادة فقدان الماء غير المحسوس", "إسهال مائي", "العمى الدائم"]
+  },
+  {
+    q: "Bronze baby syndrome is a known side effect of:",
+    o: ["Phototherapy", "Vitamin K", "Oxygen therapy", "Surfactant replacement"],
+    a: 0,
+    trQ: "متلازمة الطفل البرونزي هي عرض جانبي معروف لـ:",
+    trO: ["العلاج الضوئي", "فيتامين ك", "العلاج الأكسجيني", "استبدال المادة الفعالة"]
+  },
+  {
+    q: "Retinal damage is a potential side effect if which of the following is neglected?",
+    o: ["Eye covering", "Skin lubrication", "Feeding schedule", "Temperature monitoring"],
+    a: 0,
+    trQ: "تلف الشبكية هو عرض جانبي محتمل إذا تم إهمال أي مما يلي؟",
+    trO: ["تغطية العينين", "ترطيب الجلد", "جدول التغذية", "مراقبة الحرارة"]
+  },
+  {
+    q: "Clinical signs of phototherapy side effects may include:",
+    o: ["Apnea, irritability, high pitched cry followed by weak cry", "Normal deep sleep only", "Increased physical growth", "Stable body weight"],
+    a: 0,
+    trQ: "قد تتضمن العلامات السريرية لآثار العلاج الضوئي الجانبية:",
+    trO: ["انقطاع التنفس، التهيج، صرخات حادة تتبعها صرخات ضعيفة", "نوم عميق طبيعي فقط", "زيادة النمو البدني", "استقرار وزن الجسم"]
+  },
+  {
+    q: "In infants of diabetic mothers, maternal hyperglycemia leads to fetal hyperglycemia because the placental barrier passes from:",
+    o: ["10-20% of maternal glucose", "30-40% of maternal glucose", "70-75% of maternal glucose", "90-100% of maternal glucose"],
+    a: 2,
+    trQ: "في أطفال الأمهات المصابات بالسكري، يؤدي ارتفاع سكر الدم لدى الأم إلى فرط سكر الدم للجنين لأن حاجز المشيمة ينقل من:",
+    trO: ["10-20 بالمئة من سكر الأم", "30-40 بالمئة من سكر الأم", "70-75 بالمئة من سكر الأم", "90-100 بالمئة من سكر الأم"]
+  },
+  {
+    q: "Macrosomia in infants of diabetic mothers refers to:",
+    o: ["Very low birth weight", "Increased weight and size of all infants organs except brain", "Small organ size", "Brain enlargement only"],
+    a: 1,
+    trQ: "العملاق أو زيادة الوزن في أطفال أمهات السكري تشير إلى:",
+    trO: ["وزن ولادة منخفض جداً", "زيادة وزن وحجم جميع أعضاء الرضيع عدا الدماغ", "صغر حجم الأعضاء", "تضخم الدماغ فقط"]
+  },
+  {
+    q: "Clinical manifestations of an infant of a diabetic mother include all of the following EXCEPT:",
+    o: ["Hypotonia", "Poor feeding", "Persistent severe hypertension", "Tremors"],
+    a: 2,
+    trQ: "المظاهر السريرية لطفل الأم المصابة بالسكري تشمل كل ما يلي ما عدا:",
+    trO: ["نقص المقونة العضلية", "سوء التغذية", "ارتفاع ضغط الدم الشديد المستمر", "الرعشات"]
+  },
+  {
+    q: "Other clinical signs seen in infants of diabetic mothers include:",
+    o: ["Cyanotic spells, lethargy, seizures, hypothermia", "Hyperactive reflexes only", "Rapid weight loss", "Normal pink skin"],
+    a: 0,
+    trQ: "العلامات السريرية الأخرى التي تُرى في أطفال أمهات السكري تشمل:",
+    trO: ["نوبات زرقة، خمول، نوبات صرع، انخفاض حرارة الجسم", "منعكسات مفرطة النشاط فقط", "فقدان وزن سريع", "جلد وردي طبيعي"]
+  },
+  {
+    q: "Specific management for an infant of a diabetic mother includes checking:",
+    o: ["Blood pressure", "Serum glucose levels", "Head circumference", "Urine output"],
+    a: 1,
+    trQ: "الإدارة المحددة لطفل الأم المصابة بالسكري تتضمن فحص:",
+    trO: ["ضغط الدم", "مستويات الجلوكوز في المصل", "محيط الرأس", "معدل إخراج البول"]
+  },
+  {
+    q: "If an IDM infant is hypoglycemic, give:",
+    o: ["1-2 ml/kg of 5% dextrose", "2-4 ml/kg of 10% dextrose over 5 minutes", "10 ml/kg of water", "Oral saline only"],
+    a: 1,
+    trQ: "إذا كان طفل الأم المصابة بالسكري يعاني من نقص سكر الدم، فأعطِ:",
+    trO: ["1 إلى 2 مل لكل كجم من دكستروز 5 بالمئة", "2 إلى 4 مل لكل كجم من دكستروز 10 بالمئة خلال 5 دقائق", "10 مل لكل كجم ماء", "محلول ملحي عن طريق الفم فقط"]
+  },
+  {
+    q: "Corticosteroids may be given in IDM management in cases of:",
+    o: ["Persistent hypoglycemia", "Macrosomia", "Hyperbilirubinemia", "Skin rashes"],
+    a: 0,
+    trQ: "قد يتم إعطاء الكورتيزون في علاج طفل أمهات السكري في حالات:",
+    trO: ["نقص سكر الدم المستمر", "العملاق", "فرط بيليروبين الدم", "الطفح الجلدي"]
+  },
+  {
+    q: "Specific disorders frequently encountered in infants of diabetic mothers (IDM) include all EXCEPT:",
+    o: ["Macrosomia", "Hypoglycemia/Calcemia/Magnesemia", "Congenital malformations, specially heart", "Chronic malaria"],
+    a: 3,
+    trQ: "الاضطرابات المحددة التي تواجه بشكل متكرر في أطفال أمهات السكري تشمل كل ما يلي ما عدا:",
+    trO: ["العملاق", "نقص سكر/كالسيوم/مغنيسيوم الدم", "تشوهات خلقية وخصوصاً القلب", "الملاريا المزمنة"]
+  },
+  {
+    q: "Neonatal sepsis is a disease of neonates who are younger than:",
+    o: ["One week", "One month", "Six months", "One year"],
+    a: 1,
+    trQ: "تعفن الدم لحديثي الولادة هو مرض يصيب المواليد الأصغر سنّاً من:",
+    trO: ["أسبوع واحد", "شهر واحد", "ستة أشهر", "سنة واحدة"]
+  },
+  {
+    q: "Maternal risk factors for neonatal sepsis include all of the following EXCEPT:",
+    o: ["Premature rupture of membrane (PROM)", "Intrapartum fever of more than 38 C", "Normal spontaneous delivery at term without complications", "Prolonged rupture of membranes more than 18 hours"],
+    a: 2,
+    trQ: "عوامل الخطر الأمومية لتعفن الدم لحديثي الولادة تشمل كل ما يلي ما عدا:",
+    trO: ["التمزق المبكر للأغشية", "حمى أثناء الولادة أكثر من 38 درجة مئوية", "ولادة طبيعية تلقائية في الموعد بدون مضاعفات", "طول فترة تمزق الأغشية لأكثر من 18 ساعة"]
+  },
+  {
+    q: "Neonatal risk factors for sepsis include:",
+    o: ["Prematurity", "Neonates with ETT, IV catheters, central lines", "Neonates who are formula fed", "All of the above"],
+    a: 3,
+    trQ: "عوامل الخطر الخاصة بالطفل حديث الولادة لتعفن الدم تشمل:",
+    trO: ["الخداجة (الولادة المبكرة)", "المواليد الذين يرتدون أنابيب تنفس وأسطرة وريدية", "المواليد الذين يغذون بالحليب الصناعي", "كل ما سبق"]
+  },
+  {
+    q: "Early-onset neonatal sepsis presents within:",
+    o: ["24 hours till 72 hours", "After 7 days", "After 14 days", "After one month"],
+    a: 0,
+    trQ: "تعفن الدم المبكر لحديثي الولادة يظهر خلال:",
+    trO: ["من 24 ساعة حتى 72 ساعة", "بعد 7 أيام", "بعد 14 يوماً", "بعد شهر واحد"]
+  },
+  {
+    q: "Late-onset neonatal sepsis occurs beyond:",
+    o: ["24 hours", "The first 72 hours of life", "10 days", "14 days"],
+    a: 1,
+    trQ: "تعفن الدم المتأخر لحديثي الولادة يحدث بعد:",
+    trO: ["24 ساعة", "أول 72 ساعة من الحياة", "10 أيام", "14 يوماً"]
+  },
+  {
+    q: "Physical findings of neonatal sepsis include all of the following EXCEPT:",
+    o: ["Respiratory distress, apnea, tachypnea", "Gastrointestinal symptoms like vomiting and diarrhea", "Hypothermia or hyperthermia", "Uncontrolled weight gain and extreme physical power"],
+    a: 3,
+    trQ: "النتائج الجسدية لتعفن الدم لحديثي الولادة تشمل كل ما يلي ما عدا:",
+    trO: ["الضائقة التنفسية، انقطاع التنفس، التسرع التنفسي", "أعراض الجهاز الهضمي مثل القيء والإسهال", "انخفاض الحرارة أو فرط الحرارة", "زيادة الوزن غير المسيطر عليها والقوة البدنية المفرطة"]
+  },
+  {
+    q: "The recommended antibiotics for suspected neonatal sepsis are:",
+    o: ["Ampicillin and gentamicin", "Erythromycin only", "Aspirin", "Paracetamol"],
+    a: 0,
+    trQ: "المضادات الحيوية الموصى بها لتعفن الدم المشتبه به لحديثي الولادة هي:",
+    trO: ["أبيسيلين وجنتاميسين", "إيثرومايسين فقط", "أسبرين", "باراسيتامول"]
+  },
+  {
+    q: "In late onset neonatal sepsis, which antibiotic combination should be considered in penicillin-resistant cases?",
+    o: ["Vancomycin in combination with either gentamicin or cephalosporins", "Penicillin only", "Insulin", "Vitamin K"],
+    a: 0,
+    trQ: "في تعفن الدم المتأخر لحديثي الولادة، أي مجموعة مضادات حيوية يجب مراعاتها في الحالات المقاومة للبنسلين؟",
+    trO: ["فانكومايسين مع إما جنتاميسين أو سيفالوسبورين", "بنسلين فقط", "إنسولين", "فيتامين ك"]
+  },
+  {
+    q: "Prevention of neonatal sepsis is achieved through:",
+    o: ["Proper application of infection control practices", "Avoiding all medical care", "Stopping infant feeding", "Using cold water baths"],
+    a: 0,
+    trQ: "يتم الوقاية من تعفن الدم لحديثي الولادة من خلال:",
+    trO: ["التطبيق السليم لممارسات مكافحة العدوى", "تجنب كل الرعاية الطبية", "إيقاف تغذية الرضيع", "استخدام حمامات الماء البارد"]
+  },
+  {
+    q: "True or False: Low Birth Weight (LBW) infant is an infant whose birth weight is less than 2500 gram.",
+    o: ["True", "False"],
+    a: 0,
+    trQ: "صح أم خطأ: الطفل ذو الوزن المنخفض عند الولادة هو طفل يقل وزن ولادته عن 2500 جرام.",
+    trO: ["صح", "خطأ"]
+  },
+  {
+    q: "True or False: Respiratory distress syndrome (RDS) is caused by excess production of surfactant.",
+    o: ["True", "False"],
+    a: 1,
+    trQ: "صح أم خطأ: متلازمة الضائقة التنفسية تحدث بسبب الإنتاج الزائد للمادة الخافضة للتوتر السطحي.",
+    trO: ["صح", "خطأ"]
+  },
+  {
+    q: "True or False: Physiological jaundice appears on skin and sclera of eyes at the third day of life.",
+    o: ["True", "False"],
+    a: 0,
+    trQ: "صح أم خطأ: يظهر اليرقان الفسيولوجي على الجلد وبياض العينين في اليوم الثالث من الحياة.",
+    trO: ["صح", "خطأ"]
+  },
+  {
+    q: "True or False: During phototherapy, the infant's eyes and genital organs must be covered.",
+    o: ["True", "False"],
+    a: 0,
+    trQ: "صح أم خطأ: أثناء العلاج الضوئي، يجب تغطية عيني الرضيع وأعضائه التناسلية.",
+    trO: ["صح", "خطأ"]
+  },
+  {
+    q: "True or False: Macrosomia is a condition frequently encountered in infants of diabetic mothers.",
+    o: ["True", "False"],
+    a: 0,
+    trQ: "صح أم خطأ: العملاق (زيادة الوزن والحجم) هي حالة تواجه بشكل متكرر في أطفال أمهات السكري.",
+    trO: ["صح", "خطأ"]
+  },
+  {
+    q: "True or False: Early-onset neonatal sepsis occurs beyond the first 72 hours of life.",
+    o: ["True", "False"],
+    a: 1,
+    trQ: "صح أم خطأ: تعفن الدم المبكر لحديثي الولادة يحدث بعد أول 72 ساعة من الحياة.",
+    trO: ["صح", "خطأ"]
+  },
+  {
+    q: "True or False: The recommended antibiotics for initial neonatal sepsis are ampicillin and gentamicin.",
+    o: ["True", "False"],
+    a: 0,
+    trQ: "صح أم خطأ: والمضادات الحيوية الموصى بها لتعفن الدم الأولي لحديثي الولادة هي أمبيسيلين وجنتاميسين.",
+    trO: ["صح", "خطأ"]
+  },
+  {
+    q: "True or False: A premature infant is born after 42 weeks of gestation.",
+    o: ["True", "False"],
+    a: 1,
+    trQ: "صح أم خطأ: الطفل المبتسر يُولد بعد 42 أسبوعاً من الحمل.",
+    trO: ["صح", "خطأ"]
+  },
+  {
+    q: "True or False: Capillary refill and blood glucose should be closely monitored in infants of diabetic mothers.",
+    o: ["True", "False"],
+    a: 0,
+    trQ: "صح أم خطأ: يجب مراقبة سكر الدم عن كثب في أطفال أمهات السكري.",
+    trO: ["صح", "خطأ"]
+  },
+  {
+    q: "True or False: Phototherapy reduces bilirubin by altering its structure into a water-soluble form.",
+    o: ["True", "False"],
+    a: 0,
+    trQ: "صح أم خطأ: يقلل العلاج الضوئي البيليروبين عن طريق تغيير بنيته إلى شكل قابل للذوبان في الماء.",
+    trO: ["صح", "خطأ"]
+  }
+],
+  "place5": [],
+  "place6": [],
+  "place7": [],
+  "place8": [],
+  "place9": [],
+  "place10": [],
+  "place11": [], 
+  "place12": []
+}; 
+
+const STORAGE_PREFIX = "theCodingNurse_pediatric_nursing_";
+let quiz = []; 
+let answers = []; 
+let i=0, score=0;
+let currentMode = null; 
+let currentDataset = 'place1'; 
+let timerInterval;
+let isReviewMode = false;
+let isComprehensiveExamMode = false;
+
+let soundEnabled = true;
+let vibrationEnabled = true;
+let autoAdvanceTimeout;
+let audioCtx = null; 
+
+const qDiv=document.getElementById("question"),
+      oDiv=document.getElementById("options"),
+      progress=document.getElementById("progressBar"),
+      midNav=document.getElementById("midNav"),
+      quizContainer=document.getElementById("quizContainer"),
+      startCard=document.getElementById("startCard"),
+      resultCard=document.getElementById("resultCard"),
+      scoreText=document.getElementById("scoreText");
+
+function getDatasetLabel(dataset) {
+    if (dataset === 'all') return "الامتحان الشامل";
+    const drawer = document.getElementById("datasetDrawer");
+    if(drawer) {
+        const selectedOption = drawer.querySelector(`option[value="${dataset}"]`);
+        if(selectedOption) return selectedOption.textContent;
+    }
+    return dataset;
+}
+
+function playAudioTone(type) {
+    if(!soundEnabled) return; 
+    try {
+        if (!audioCtx) { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
+        if (audioCtx.state === 'suspended') { audioCtx.resume(); }
+        const oscillator = audioCtx.createOscillator();
+        const gainNode = audioCtx.createGain();
+        oscillator.connect(gainNode); gainNode.connect(audioCtx.destination);
+        
+        if(type === 'correct') {
+            oscillator.frequency.setValueAtTime(523.25, audioCtx.currentTime); 
+            oscillator.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.08); 
+            gainNode.gain.setValueAtTime(0.15, audioCtx.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.25);
+            oscillator.start(); oscillator.stop(audioCtx.currentTime + 0.25);
+        } else if(type === 'wrong') {
+            oscillator.type = 'sawtooth'; oscillator.frequency.setValueAtTime(140, audioCtx.currentTime);
+            gainNode.gain.setValueAtTime(0.15, audioCtx.currentTime); gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.35);
+            oscillator.start(); oscillator.stop(audioCtx.currentTime + 0.35);
+        } else if(type === 'click') {
+            oscillator.frequency.setValueAtTime(380, audioCtx.currentTime); gainNode.gain.setValueAtTime(0.08, audioCtx.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.06);
+            oscillator.start(); oscillator.stop(audioCtx.currentTime + 0.06);
+        }
+    } catch(e) { console.log("Audio issue handled."); }
+}
+
+function triggerHaptic(type) {
+    if (!vibrationEnabled) return; 
+    if (navigator.vibrate) {
+        if (type === 'correct') navigator.vibrate(70);
+        else if (type === 'wrong') navigator.vibrate([100, 60, 100]);
+        else if (type === 'click') navigator.vibrate(35);
+    }
+}
+
+function toggleSound() {
+    soundEnabled = !soundEnabled;
+    document.getElementById("soundToggle").innerHTML = soundEnabled ? "<span>🔊</span> Sound On" : "<span>🔇</span> Sound Off";
+}
+
+function toggleVibration() {
+    vibrationEnabled = !vibrationEnabled;
+    document.getElementById("vibeToggle").innerHTML = vibrationEnabled ? "<span>📳</span> Vibe On" : "<span>📴</span> Vibe Off";
+}
+
+function setMode(mode) { currentMode = mode; showHighScore(); }
+function setDataset(dataset) { currentDataset = dataset; showHighScore(); }
+
+function toggleTheme() {
+  const currentTheme = document.documentElement.getAttribute('data-theme');
+  const targetTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', targetTheme);
+  document.querySelector('.theme-toggle').innerHTML = targetTheme === 'dark' ? '<span>☀️</span> Light Mode' : '<span>🌓</span> Dark Mode';
+}
+
+function prepareQuizData(shouldShuffle) {
+    quiz.forEach(q => {
+        q.combinedOptions = q.o.map((enText, idx) => ({
+            en: enText,
+            ar: q.trO && q.trO[idx] ? q.trO[idx] : ""
+        }));
+    });
+    
+    if(shouldShuffle) {
+        for (let currentIdx = quiz.length - 1; currentIdx > 0; currentIdx--) {
+            const randomIdx = Math.floor(Math.random() * (currentIdx + 1));
+            [quiz[currentIdx], quiz[randomIdx]] = [quiz[randomIdx], quiz[currentIdx]];
+        }
+        quiz.forEach(q => {
+            for (let j = q.combinedOptions.length - 1; j > 0; j--) {
+                const r = Math.floor(Math.random() * (j + 1));
+                [q.combinedOptions[j], q.combinedOptions[r]] = [q.combinedOptions[r], q.combinedOptions[j]];
+            }
+        });
+    }
+}
+
+function startTimer() {
+    clearInterval(timerInterval);
+    let totalSeconds = isComprehensiveExamMode ? Math.min(3600, quiz.length * 36) : quiz.length * 30; 
+    const timerDisplay = document.getElementById("timerDisplay");
+    document.getElementById("timerBox").style.display = "block";
+    
+    function refreshTimerView() {
+        let mins = Math.floor(totalSeconds / 60);
+        let secs = totalSeconds % 60;
+        timerDisplay.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    }
+    
+    refreshTimerView();
+    timerInterval = setInterval(() => {
+        totalSeconds--;
+        if(totalSeconds <= 0) { clearInterval(timerInterval); showResult(); } else { refreshTimerView(); }
+    }, 1000);
+}
+
+function getFlaggedTexts() { return JSON.parse(localStorage.getItem(STORAGE_PREFIX + "flagged_questions") || "[]"); }
+
+function speakQuestion() {
+    if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel(); 
+        let structuredText = `Question number ${i + 1}: ${quiz[i].q}. `;
+        quiz[i].combinedOptions.forEach((opObj, idx) => { structuredText += `Choice number ${idx + 1}: ${opObj.en}. `; });
+        const utterance = new SpeechSynthesisUtterance(structuredText);
+        utterance.lang = 'en-US'; utterance.rate = 0.88;
+        utterance.onstart = () => {
+            const stopBtn = document.getElementById("stopSpeakBtn");
+            stopBtn.style.display = "inline-block"; stopBtn.innerHTML = "⏸️";
+        };
+        const resetAudioUI = () => { document.getElementById("stopSpeakBtn").style.display = "none"; };
+        utterance.onend = resetAudioUI; utterance.onerror = resetAudioUI;
+        window.speechSynthesis.speak(utterance);
+    }
+}
+
+function toggleSpeechPause() {
+    if ('speechSynthesis' in window) {
+        const stopBtn = document.getElementById("stopSpeakBtn");
+        if (window.speechSynthesis.speaking) {
+            if (window.speechSynthesis.paused) { window.speechSynthesis.resume(); stopBtn.innerHTML = "⏸️"; } 
+            else { window.speechSynthesis.pause(); stopBtn.innerHTML = "▶️"; }
+        }
+    }
+}
+
+function forceStopSpeechEngine() {
+    if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const stopBtn = document.getElementById("stopSpeakBtn");
+        if (stopBtn) stopBtn.style.display = "none";
+    }
+}
+
+function toggleTranslation() {
+    const tBox = document.getElementById("translationBox");
+    tBox.style.display = (tBox.style.display === "block") ? "none" : "block";
+}
+
+function selectRootMode(rootMode) {
+    const mainMenu = document.getElementById("mainModeMenu");
+    const lecturesSetup = document.getElementById("lecturesSetupContainer");
+    
+    if (rootMode === 'lectures') {
+        mainMenu.style.display = "none";
+        lecturesSetup.style.display = "block";
+        isComprehensiveExamMode = false;
+        checkSavedProgress();
+        showHighScore();
+    } else if (rootMode === 'main') {
+        mainMenu.style.display = "flex";
+        lecturesSetup.style.display = "none";
+        isComprehensiveExamMode = false;
+    } else if (rootMode === 'comprehensive_exam') {
+        isComprehensiveExamMode = true;
+        currentMode = 'exam';
+        startComprehensiveExamSession();
+    }
+}
+
+function startComprehensiveExamSession() {
+    let allMergedQuestions = [];
+    
+    Object.keys(datasets).forEach(key => {
+        if (Array.isArray(datasets[key]) && datasets[key].length > 0) {
+            datasets[key].forEach(q => {
+                allMergedQuestions.push(JSON.parse(JSON.stringify(q)));
+            });
+        }
+    });
+
+    if (allMergedQuestions.length === 0) {
+        alert("لا توجد أسئلة متوفرة في قاعدة البيانات الحالية!");
+        selectRootMode('main');
+        return;
+    }
+
+    const targetExamCount = Math.min(100, allMergedQuestions.length);
+    let examPool = [];
+    try { examPool = JSON.parse(localStorage.getItem(STORAGE_PREFIX + "exam_pool") || "[]"); } catch (e) { examPool = []; }
+
+    const validQuestionTexts = new Set(allMergedQuestions.map(q => q.q));
+    examPool = Array.isArray(examPool) ? examPool.filter(q => validQuestionTexts.has(q.q)) : [];
+
+    const savedTotalCount = parseInt(localStorage.getItem(STORAGE_PREFIX + "exam_pool_total") || "0", 10);
+    if (savedTotalCount !== allMergedQuestions.length || examPool.length < targetExamCount) {
+        examPool = [...allMergedQuestions];
+        for (let idx = examPool.length - 1; idx > 0; idx--) {
+            const randomIdx = Math.floor(Math.random() * (idx + 1));
+            [examPool[idx], examPool[randomIdx]] = [examPool[randomIdx], examPool[idx]];
+        }
+        localStorage.setItem(STORAGE_PREFIX + "exam_pool_total", String(allMergedQuestions.length));
+    }
+
+    quiz = examPool.slice(0, targetExamCount);
+    let remainingPool = examPool.slice(targetExamCount);
+    localStorage.setItem(STORAGE_PREFIX + "exam_pool", JSON.stringify(remainingPool));
+
+    quiz.forEach(q => {
+        q.combinedOptions = q.o.map((enText, idx) => ({
+            en: enText,
+            ar: q.trO && q.trO[idx] ? q.trO[idx] : ""
+        }));
+        for (let j = q.combinedOptions.length - 1; j > 0; j--) {
+            const r = Math.floor(Math.random() * (j + 1));
+            [q.combinedOptions[j], q.combinedOptions[r]] = [q.combinedOptions[r], q.combinedOptions[j]];
+        }
+    });
+
+    answers = new Array(quiz.length).fill(null);
+    i = 0; score = 0;
+    localStorage.removeItem(STORAGE_PREFIX + "quiz_progress");
+
+    midNav.innerHTML = "";
+    quiz.forEach((_, idx) => {
+      const b = document.createElement("button");
+      b.textContent = idx + 1; b.className = "q-btn";
+      b.onclick = () => { i = idx; load(); };
+      midNav.appendChild(b);
+    });
+
+    startCard.style.display = "none"; 
+    quizContainer.style.display = "block";
+    startTimer();
+    load();
+}
+
+function startQuiz() {
+    if (!currentMode) {
+        alert("⚠️ من فضلك اختر وضع الاختبار أولاً!");
+        return;
+    }
+
+    let selectedBank = [];
+
+    if (currentDataset === 'all') {
+        Object.keys(datasets).forEach(key => {
+            if (Array.isArray(datasets[key]) && datasets[key].length > 0) {
+                selectedBank = selectedBank.concat(datasets[key]);
+            }
+        });
+        selectedBank = JSON.parse(JSON.stringify(selectedBank));
+    } else {
+        selectedBank = JSON.parse(JSON.stringify(datasets[currentDataset] || []));
+    }
+
+    if(selectedBank.length === 0) {
+        alert("لا توجد أسئلة متوفرة في هذا القسم حالياً!");
+        return;
+    }
+
+    if (currentMode === 'bookmark') {
+        let flagged = getFlaggedTexts();
+        quiz = selectedBank.filter(q => flagged.includes(q.q));
+        if (quiz.length === 0) {
+            alert("❌ لا توجد أسئلة مميزة بـ 🔖 في هذا القسم!");
+            return;
+        }
+        prepareQuizData(false);
+        localStorage.removeItem(STORAGE_PREFIX + "quiz_progress");
+    } else if(!isReviewMode) {
+        quiz = selectedBank;
+        let doShuffle = (currentMode !== 'sequential' && currentMode !== 'memorize');
+        prepareQuizData(doShuffle); 
+        localStorage.removeItem(STORAGE_PREFIX + "quiz_progress"); 
+    }
+    answers = new Array(quiz.length).fill(null);
+    
+    midNav.innerHTML = "";
+    quiz.forEach((_, idx) => {
+      const b = document.createElement("button");
+      b.textContent = idx + 1; b.className = "q-btn";
+      b.onclick = () => { i = idx; load(); };
+      midNav.appendChild(b);
+    });
+
+    startCard.style.display = "none"; quizContainer.style.display = "block";
+    if(currentMode === 'exam') { startTimer(); } else { document.getElementById("timerBox").style.display = "none"; }
+    load();
+}
+
+function updateMidNav(){
+  let flagged = getFlaggedTexts();
+  document.querySelectorAll(".q-btn").forEach((el,idx)=>{
+    el.classList.remove("active","correct","wrong","answered-exam","flagged");
+    if(idx===i) el.classList.add("active");
+    if(quiz[idx] && flagged.includes(quiz[idx].q)) el.classList.add("flagged");
+    
+    if(quiz[idx] && quiz[idx].userPick !== undefined) {
+        if(isComprehensiveExamMode || currentMode === 'exam') { 
+            el.classList.add("answered-exam"); 
+        } else if(currentMode === 'study' || currentMode === 'sequential' || currentMode === 'bookmark' || currentMode === 'memorize') {
+            if(answers[idx]===true) el.classList.add("correct");
+            if(answers[idx]===false) el.classList.add("wrong");
+        }
+    }
+  });
+}
+
+function toggleFlag() {
+    if(quiz[i]) {
+        let flagged = getFlaggedTexts();
+        const qText = quiz[i].q;
+        if(flagged.includes(qText)) {
+            flagged = flagged.filter(t => t !== qText); quiz[i].isFlagged = false;
+        } else {
+            flagged.push(qText); quiz[i].isFlagged = true;
+        }
+        localStorage.setItem(STORAGE_PREFIX + "flagged_questions", JSON.stringify(flagged));
+        document.getElementById("flagBtn").classList.toggle("active", quiz[i].isFlagged);
+        updateMidNav(); saveProgress();
+    }
+}
+
+function load(){
+  if(quiz.length === 0) return;
+  clearTimeout(autoAdvanceTimeout); forceStopSpeechEngine(); 
+  document.getElementById("translationBox").style.display = "none";
+
+  const qCard = document.getElementById("quizCard");
+  qCard.style.animation = 'none'; qCard.offsetHeight; 
+  qCard.style.animation = 'popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)';
+
+  let qText = quiz[i].q;
+  if (currentMode === 'memorize' && quiz[i].kw) {
+      const safeKw = quiz[i].kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const regex = new RegExp(`(${safeKw})`, 'gi');
+      qText = qText.replace(regex, `<span class="kw-highlight">$1</span>`);
+  }
+  
+  qDiv.innerHTML = qText;
+  document.getElementById("qIndexBadge").textContent = `Q: ${i + 1} / ${quiz.length}`;
+  
+  const correctIdx = quiz[i].combinedOptions.findIndex(opt => opt.en === quiz[i].o[quiz[i].a]);
+  const transBtn = document.getElementById("translateBtn");
+  
+  if(quiz[i].trQ) {
+      transBtn.style.display = "inline-block";
+      document.getElementById("transQText").textContent = quiz[i].trQ;
+      const transOList = document.getElementById("transOList"); transOList.innerHTML = "";
+      quiz[i].combinedOptions.forEach(optObj => {
+          if(optObj.ar) { const li = document.createElement("li"); li.textContent = optObj.ar; transOList.appendChild(li); }
+      });
+  } else { transBtn.style.display = "none"; }
+  
+  let flagged = getFlaggedTexts();
+  quiz[i].isFlagged = flagged.includes(quiz[i].q);
+  document.getElementById("flagBtn").classList.toggle("active", !!quiz[i].isFlagged);
+  
+  oDiv.innerHTML=""; progress.style.width=((i+1)/quiz.length)*100+"%"; updateMidNav();
+  
+  quiz[i].combinedOptions.forEach((opObj,idx)=>{
+    const b = document.createElement("button"); b.textContent = opObj.en;
+    
+    if (currentMode === 'memorize' && quiz[i].userPick === undefined) {
+        if (idx === correctIdx) { b.classList.add("correct"); b.style.borderWidth = "3px"; } 
+        else { b.style.opacity = "0.4"; b.disabled = true; }
+    }
+    if(quiz[i].userPick !== undefined) {
+        b.disabled=true;
+        if(isComprehensiveExamMode) {
+            if(idx === quiz[i].userPick) b.classList.add("selected-exam");
+        } else if(currentMode === 'study' || currentMode === 'sequential' || currentMode === 'bookmark' || currentMode === 'memorize') {
+            if(idx===correctIdx) b.classList.add("correct");
+            else if(idx === quiz[i].userPick) b.classList.add("wrong");
+        } else { if(idx === quiz[i].userPick) b.classList.add("selected-exam"); }
+    }
+    b.onclick=()=>answer(idx,b); oDiv.appendChild(b);
+  });
+}
+
+function answer(idx,btn){
+  if(quiz[i].userPick !== undefined) return;
+  quiz[i].userPick = idx;
+  document.querySelectorAll(".options button").forEach(b=>b.disabled=true);
+  const correctIdx = quiz[i].combinedOptions.findIndex(opt => opt.en === quiz[i].o[quiz[i].a]);
+  
+  if(isComprehensiveExamMode) {
+      btn.classList.add("selected-exam"); playAudioTone('click'); triggerHaptic('click');
+      autoAdvanceTimeout = setTimeout(() => { nextQ(); }, 150);
+  } else if(currentMode === 'study' || currentMode === 'sequential' || currentMode === 'bookmark' || currentMode === 'memorize') {
+      if(idx===correctIdx){
+        btn.classList.add("correct"); answers[i]=true; score++;
+        playAudioTone('correct'); triggerHaptic('correct');
+        autoAdvanceTimeout = setTimeout(() => { nextQ(); }, 1200); 
+      }else{
+        btn.classList.add("wrong"); btn.classList.add("shake-anim"); 
+        oDiv.children[correctIdx].classList.add("correct"); answers[i]=false;
+        playAudioTone('wrong'); triggerHaptic('wrong');
+      }
+  } else { btn.classList.add("selected-exam"); playAudioTone('click'); triggerHaptic('click'); }
+  updateMidNav(); saveProgress();
+}
+
+function nextQ(){ if(i<quiz.length-1){i++;load()} else showResult(); }
+function prevQ(){ if(i>0){i--;load()} }
+
+function goToHome() {
+    clearInterval(timerInterval); forceStopSpeechEngine(); saveProgress(); 
+    quizContainer.style.display = "none"; startCard.style.display = "block";
+    isReviewMode = false;
+    
+    if(isComprehensiveExamMode) { selectRootMode('main'); } else { selectRootMode('lectures'); }
+}
+
+function saveProgress() {
+    if(isReviewMode || isComprehensiveExamMode) return; 
+    const dataToSave = { quiz: quiz, answers: answers, i: i, score: score, currentMode: currentMode, currentDataset: currentDataset };
+    localStorage.setItem(STORAGE_PREFIX + "quiz_progress", JSON.stringify(dataToSave));
+}
+
+function checkSavedProgress() {
+    if(localStorage.getItem(STORAGE_PREFIX + "quiz_progress") && !isComprehensiveExamMode) { document.getElementById("resumeBtn").style.display = "block"; } 
+    else { document.getElementById("resumeBtn").style.display = "none"; }
+}
+
+function showHighScore() {
+    if (!currentMode) {
+        document.getElementById("highScoreView").style.display = "none";
+        return;
+    }
+    let modeKey = isComprehensiveExamMode ? STORAGE_PREFIX + "high_score_comprehensive" : STORAGE_PREFIX + "high_score_" + currentDataset + "_" + currentMode;
+    let highScore = localStorage.getItem(modeKey);
+    const hsView = document.getElementById("highScoreView");
+    if(highScore !== null) {
+        let modeName = "";
+        if(isComprehensiveExamMode) modeName = "(الامتحان الشامل)";
+        else if(currentMode === 'sequential') modeName = "(الترتيب)";
+        else if(currentMode === 'study') modeName = "(المذاكرة)";
+        else if(currentMode === 'exam') modeName = "(الامتحان)";
+        else if(currentMode === 'bookmark') modeName = "(المميزة)";
+        else if(currentMode === 'memorize') modeName = "(البصمجة)";
+        
+        document.getElementById("highScoreVal").textContent = isComprehensiveExamMode ? highScore + "% " + modeName : highScore + "% " + modeName + " - " + getDatasetLabel(currentDataset);
+        hsView.style.display = "block";
+    } else { hsView.style.display = "none"; }
+}
+
+function resumeQuiz() {
+    const savedData = localStorage.getItem(STORAGE_PREFIX + "quiz_progress");
+    if(!savedData) return;
+    const parsedData = JSON.parse(savedData);
+    quiz = parsedData.quiz; answers = parsedData.answers; i = parsedData.i; score = parsedData.score; currentMode = parsedData.currentMode; currentDataset = parsedData.currentDataset || 'place1';
+    isComprehensiveExamMode = false;
+
+    document.querySelectorAll('input[name="quizMode"]').forEach(radio => { if(radio.value === currentMode) radio.checked = true; });
+    if(document.getElementById("datasetDrawer")) document.getElementById("datasetDrawer").value = currentDataset;
+    
+    midNav.innerHTML = "";
+    quiz.forEach((_, idx) => {
+      const b = document.createElement("button"); b.textContent = idx + 1; b.className = "q-btn";
+      b.onclick = () => { i = idx; load(); }; midNav.appendChild(b);
+    });
+    startCard.style.display = "none"; quizContainer.style.display = "block";
+    if(currentMode === 'exam') { startTimer(); } else { document.getElementById("timerBox").style.display = "none"; }
+    load();
+}
+
+function showResult(){
+  clearInterval(timerInterval); forceStopSpeechEngine();
+  localStorage.removeItem(STORAGE_PREFIX + "quiz_progress"); 
+  document.getElementById("timerBox").style.display = "none";
+  quizContainer.style.display="none"; resultCard.style.display="block";
+  
+  if(currentMode === 'exam' || isComprehensiveExamMode) {
+      score = 0;
+      quiz.forEach((q) => { 
+          const correctIdx = q.combinedOptions.findIndex(opt => opt.en === q.o[q.a]);
+          if(q.userPick === correctIdx) score++; 
+      });
+  }
+  const wrongCount = quiz.length - score;
+  const accuracyRatio = Math.round((score / quiz.length) * 100);
+  
+  if (!isReviewMode) {
+      let modeKey = isComprehensiveExamMode ? STORAGE_PREFIX + "high_score_comprehensive" : STORAGE_PREFIX + "high_score_" + currentDataset + "_" + currentMode;
+      let savedHighScore = parseInt(localStorage.getItem(modeKey)) || 0;
+      if(!isNaN(accuracyRatio) && accuracyRatio > savedHighScore) { localStorage.setItem(modeKey, accuracyRatio); }
+  }
+  
+  document.getElementById("statCorrect").textContent = score;
+  document.getElementById("statWrong").textContent = wrongCount;
+  document.getElementById("statRatio").textContent = isNaN(accuracyRatio) ? "0%" : accuracyRatio + "%";
+  scoreText.textContent=`${score} / ${quiz.length}`;
+  
+  const bTitle = document.getElementById("badgeTitle");
+  if(accuracyRatio >= 95) bTitle.textContent = "👑 Master of Pediatric Nursing";
+  else if(accuracyRatio >= 80) bTitle.textContent = "📚 Pediatric Nursing Hero";
+  else if(accuracyRatio >= 50) bTitle.textContent = "💡 Smart Nurse";
+  else bTitle.textContent = "💪 Keep Fighting, Future Nurse";
+  
+  document.getElementById("reviewBtn").style.display = wrongCount > 0 ? "inline-block" : "none";
+  if(score >= (quiz.length / 2) && quiz.length > 0) {
+    var duration = 3 * 1000; var end = Date.now() + duration;
+    (function frame() {
+      confetti({ particleCount: 4, angle: 60, spread: 55, origin: { x: 0, y: 0.7 } });
+      confetti({ particleCount: 4, angle: 120, spread: 55, origin: { x: 1, y: 0.7 } });
+      if (Date.now() < end) { requestAnimationFrame(frame); }
+    }());
+  }
+}
+
+function startReview() {
+    let wrongQuestions = quiz.filter(q => {
+        const correctIdx = q.combinedOptions.findIndex(opt => opt.en === q.o[q.a]);
+        return q.userPick !== correctIdx;
+    });
+    if(wrongQuestions.length === 0) return;
+    quiz = JSON.parse(JSON.stringify(wrongQuestions));
+    quiz.forEach(q => { delete q.userPick; delete q.isFlagged; }); 
+    isReviewMode = true; i = 0; score = 0; currentMode = 'study';
+    prepareQuizData(false); resultCard.style.display = "none"; startQuiz();
+}
+
+function downloadResultCard() {
+    const dBtn = document.getElementById("downloadBtn");
+    const containerActionButtons = document.querySelector(".result-actions-container");
+    dBtn.textContent = "⏳ Generating Image..."; dBtn.disabled = true;
+    containerActionButtons.style.display = "none"; 
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+    const bgColor = currentTheme === 'dark' ? '#0f172a' : '#f1f5f9';
+    
+    html2canvas(document.querySelector(".container"), {
+        backgroundColor: bgColor, scale: 2, useCORS: true, allowTaint: true,
+        onclone: (clonedDoc) => { clonedDoc.documentElement.setAttribute('data-theme', currentTheme); }
+    }).then(canvas => {
+        const downloadLink = document.createElement("a"); downloadLink.download = `TheCodingNurse_PediatricNursing_Score.png`;
+        downloadLink.href = canvas.toDataURL("image/png"); downloadLink.click();
+        containerActionButtons.style.display = "flex"; dBtn.textContent = "📸 تحميل النتيجة كصورة"; dBtn.disabled = false;
+    }).catch(err => {
+        containerActionButtons.style.display = "flex"; dBtn.textContent = "📸 تحميل النتيجة كصورة"; dBtn.disabled = false;
+    });
+}
+
+function restartQuiz(){
+  i=0; score=0; isReviewMode = false; clearInterval(timerInterval); forceStopSpeechEngine();
+  localStorage.removeItem(STORAGE_PREFIX + "quiz_progress");
+  document.getElementById("resumeBtn").style.display = "none";
+  resultCard.style.display="none"; startCard.style.display="block";
+  selectRootMode('main');
+}
+
+window.onload = function() { 
+    const drawer = document.getElementById("datasetDrawer");
+    if(drawer) { currentDataset = drawer.value || 'place1'; }
+    selectRootMode('main'); 
+};
+</script>
+</body>
+</html>
